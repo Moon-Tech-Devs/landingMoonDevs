@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoonDevs | Desarrollo de Software</title>
+  <meta name="description" content="MoonDevs desarrolla software a medida para empresas que necesitan escalar con tecnología confiable y rápida.">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+    :root {
+      --bg: #f3f7ff;
+      --surface: #ffffff;
+      --text: #081a3a;
+      --muted: #4c5f86;
+      --line: #d8e2f5;
+      --primary: #0b49b5;
+      --primary-dark: #073889;
+      --accent: #12a9e7;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --container: 1100px;
+      --shadow: 0 20px 40px rgba(8, 26, 58, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", "Segoe UI", Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #dce9ff 0%, transparent 60%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(243, 247, 255, 0.78);
+      border-bottom: 1px solid rgba(216, 226, 245, 0.9);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.78rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: 0.22s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(11, 73, 181, 0.24);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #0f8cc0 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-ghost:hover {
+      border-color: #b8c8e8;
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 5.5rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid #c6d7f8;
+      color: #1b3f86;
+      background: #f7fbff;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      max-width: 17ch;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.07rem;
+      max-width: 58ch;
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .kpis {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.4rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .kpis strong {
+      color: var(--text);
+      font-size: 1rem;
+      margin-right: 0.28rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #ffffff 0%, #eff6ff 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      margin-bottom: 1.05rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .timeline li {
+      list-style: none;
+      border: 1px solid #d7e4fb;
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.92rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: #1f3d77;
+    }
+
+    .timeline span {
+      color: #6782b7;
+      font-size: 0.84rem;
+    }
+
+    section {
+      padding: 3.6rem 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 65ch;
+      margin: 0 auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+    }
+
+    .feature h3 {
+      font-size: 1.04rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+    }
+
+    .step .num {
+      display: inline-flex;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 999px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #dde9ff;
+      color: var(--primary);
+      margin-bottom: 0.55rem;
+    }
+
+    .step h4 {
+      margin-bottom: 0.35rem;
+      font-size: 0.98rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .cta {
+      background: linear-gradient(145deg, #071a43 0%, #0b49b5 62%, #12a9e7 100%);
+      color: #f8faff;
+      border-radius: 24px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cta p {
+      color: #d6e9ff;
+      max-width: 62ch;
+    }
+
+    .cta .btn-primary {
+      background: #ffffff;
+      color: #0a2f73;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .cta .btn-primary:hover {
+      background: #e8f5ff;
+    }
+
+    footer {
+      padding: 2rem 0 2.4rem;
+      color: #4f6188;
+      font-size: 0.9rem;
+    }
+
+    .footer-wrap {
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.65rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: 0.45s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        min-height: 70px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 4.2rem;
+      }
+
+      .features,
+      .process {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <img src="logo.png" alt="Logo de MoonDevs">
+        <span>MoonDevs</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="btn btn-primary" href="https://wa.me/593962562482?text=Hola%20MoonDevs,%20quiero%20hablar%20sobre%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer">
+        Contactar equipo
+      </a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Desarrollo a medida para empresas</p>
+          <h1>Software de alto impacto para crecer con velocidad.</h1>
+          <p class="lead">
+            En MoonDevs transformamos ideas en productos digitales robustos. Diseñamos, desarrollamos y escalamos plataformas web y sistemas internos con enfoque en resultados de negocio.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/593962562482?text=Hola%20MoonDevs,%20necesito%20una%20cotizaci%C3%B3n%20de%20software." target="_blank" rel="noopener noreferrer">Solicitar cotización</a>
+            <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+          </div>
+          <div class="kpis">
+            <span><strong>+40</strong> productos entregados</span>
+            <span><strong>99.9%</strong> estabilidad operativa</span>
+            <span><strong>2x</strong> implementación más rápida</span>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal">
+          <h3>Tu proyecto, listo en semanas</h3>
+          <p>Planificamos cada sprint para construir valor desde el primer release.</p>
+          <ul class="timeline">
+            <li>
+              Descubrimiento y arquitectura
+              <span>Semana 1</span>
+            </li>
+            <li>
+              Diseño UX/UI y prototipo validado
+              <span>Semana 2</span>
+            </li>
+            <li>
+              Desarrollo iterativo y QA continuo
+              <span>Semana 3-6</span>
+            </li>
+            <li>
+              Lanzamiento y mejora constante
+              <span>Continuo</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Servicios de desarrollo enfocados en resultados</h2>
+          <p>Combinamos ingeniería, diseño y estrategia para construir software confiable, escalable y fácil de mantener.</p>
+        </div>
+
+        <div class="features">
+          <article class="feature reveal">
+            <h3>Aplicaciones Web</h3>
+            <p>Desarrollo de plataformas modernas, rápidas y seguras para operaciones, ventas o productos SaaS.</p>
+          </article>
+          <article class="feature reveal">
+            <h3>Sistemas Empresariales</h3>
+            <p>Automatizamos procesos internos con software a medida que reduce costos y mejora la productividad.</p>
+          </article>
+          <article class="feature reveal">
+            <h3>Integraciones API</h3>
+            <p>Conectamos tu negocio con pasarelas de pago, ERPs, CRMs y servicios externos sin fricción.</p>
+          </article>
+          <article class="feature reveal">
+            <h3>Arquitectura Escalable</h3>
+            <p>Diseñamos bases tecnológicas preparadas para crecer con más usuarios, datos y funcionalidades.</p>
+          </article>
+          <article class="feature reveal">
+            <h3>QA y Performance</h3>
+            <p>Aplicamos pruebas y optimización continua para garantizar calidad, estabilidad y velocidad.</p>
+          </article>
+          <article class="feature reveal">
+            <h3>Soporte Evolutivo</h3>
+            <p>Seguimos contigo después del lanzamiento para iterar y mantener el producto competitivo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Un proceso claro de principio a fin</h2>
+          <p>Trabajamos con comunicación constante y entregas cortas para que tengas visibilidad total del avance.</p>
+        </div>
+        <div class="process">
+          <article class="step reveal">
+            <span class="num">1</span>
+            <h4>Análisis</h4>
+            <p>Definimos objetivos, alcance y prioridades del proyecto.</p>
+          </article>
+          <article class="step reveal">
+            <span class="num">2</span>
+            <h4>Diseño</h4>
+            <p>Validamos experiencia de usuario y arquitectura técnica.</p>
+          </article>
+          <article class="step reveal">
+            <span class="num">3</span>
+            <h4>Construcción</h4>
+            <p>Desarrollamos por sprints con demos frecuentes y control de calidad.</p>
+          </article>
+          <article class="step reveal">
+            <span class="num">4</span>
+            <h4>Escalamiento</h4>
+            <p>Monitoreamos, optimizamos y acompañamos el crecimiento del sistema.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="cta reveal">
+          <div>
+            <h2>Hablemos de tu próximo software</h2>
+            <p>Cuéntanos tu idea o necesidad técnica. El equipo de MoonDevs te responderá para planificar alcance, tiempos y presupuesto.</p>
+          </div>
+          <a class="btn btn-primary" href="https://wa.me/593962562482?text=Hola%20MoonDevs,%20quiero%20agendar%20una%20reuni%C3%B3n%20sobre%20mi%20proyecto." target="_blank" rel="noopener noreferrer">
+            Contactar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>&copy; <span id="year"></span> MoonDevs. Todos los derechos reservados.</p>
+      <p>Software a medida para empresas en crecimiento.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
