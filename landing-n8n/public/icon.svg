@@ -1,0 +1,37 @@
+<svg 
+  width="600" 
+  height="300" 
+  viewBox="220 70 560 360" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="gradientBrackets" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D8B44" />
+      <stop offset="100%" stop-color="#1A5228" />
+    </linearGradient>
+    
+    <linearGradient id="gradientRocket" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#4CAF50" />
+    </linearGradient>
+  </defs>
+
+  <path d="M410 120 L290 250 L410 380 L350 380 L230 250 L350 120 Z" fill="url(#gradientBrackets)" />
+  <circle cx="410" cy="250" r="15" fill="black" />
+
+  <path d="M590 120 L710 250 L590 380 L650 380 L770 250 L650 120 Z" fill="url(#gradientBrackets)" />
+  <circle cx="590" cy="250" r="15" fill="black" />
+
+  <g transform="rotate(15, 500, 250)">
+    <path d="M500 80 C540 80 570 180 570 300 C570 380 530 420 500 420 C470 420 430 380 430 300 C430 180 460 80 500 80 Z" fill="url(#gradientRocket)" />
+    
+    <path d="M445 300 L390 380 L445 360 Z" fill="#2D8B44" />
+    <path d="M555 300 L610 380 L555 360 Z" fill="#2D8B44" />
+    
+    <circle cx="500" cy="180" r="22" fill="black" />
+    <circle cx="500" cy="250" r="12" fill="black" />
+    
+    <path d="M500 95 C520 95 545 150 545 230 L455 230 C455 150 480 95 500 95 Z" fill="white" fill-opacity="0.3" />
+  </g>
+</svg>
