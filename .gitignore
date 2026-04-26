@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Next.js (landing-n8n)
+.next/
+out/
+
+# Build info
+*.tsbuildinfo
+
+# Env / deploy
+.env
+.env.*
+!.env.example
+.vercel/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
