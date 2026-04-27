@@ -64,14 +64,13 @@ export function ProofDashboard() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 border-b border-border md:grid-cols-4">
+          <div className="grid grid-cols-1 border-b border-border sm:grid-cols-2 md:grid-cols-4">
             {stats.map((s, i) => (
               <div
                 key={s.label}
                 className={cn(
                   "flex flex-col gap-1.5 px-5 py-5",
-                  i !== stats.length - 1 && "border-b md:border-b-0 md:border-r border-border",
-                  i === 1 && "border-b md:border-b-0",
+                  i !== stats.length - 1 && "border-b border-border md:border-b-0 md:border-r",
                 )}
               >
                 <div className="flex items-center justify-between text-muted-foreground">
@@ -104,14 +103,14 @@ export function ProofDashboard() {
                 {logs.map((l, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-[auto_1fr_auto] items-center gap-x-4 px-5 py-2.5 transition-colors hover:bg-white/[0.02]"
+                    className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 px-4 py-2.5 transition-colors hover:bg-white/[0.02] sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-x-4 sm:px-5"
                   >
-                    <span className="text-muted-foreground/70">{l.time}</span>
+                    <span className="col-span-2 text-muted-foreground/70 sm:col-span-1">{l.time}</span>
                     <div className="min-w-0">
-                      <span className="text-foreground/90">{l.workflow}</span>
-                      <span className="ml-3 text-muted-foreground">{l.event}</span>
+                      <span className="block truncate text-foreground/90 sm:inline">{l.workflow}</span>
+                      <span className="block truncate text-muted-foreground sm:ml-3 sm:inline">{l.event}</span>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-end gap-2 sm:gap-3">
                       <span className="text-muted-foreground/80">{l.ms}ms</span>
                       <StatusBadge status={l.status} />
                     </div>

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function N8NPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
       <Nav />
       <Hero />
       <VideoTimeline />

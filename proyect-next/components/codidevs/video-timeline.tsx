@@ -57,7 +57,7 @@ export function VideoTimeline() {
   return (
     <section
       id="motor"
-      className="relative overflow-hidden px-4 py-28 sm:py-36"
+      className="relative overflow-hidden px-4 py-20 sm:py-28 lg:py-36"
     >
       {/* Section ambient mesh */}
       <div
@@ -94,7 +94,7 @@ export function VideoTimeline() {
           {/* The hardware pill */}
           <div className="animate-float relative">
             <div
-              className="relative flex items-stretch rounded-full p-1.5"
+              className="relative flex items-stretch gap-0 overflow-x-auto rounded-full p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{
                 background:
                   "linear-gradient(180deg, oklch(0.22 0.005 150) 0%, oklch(0.13 0.005 150) 45%, oklch(0.05 0 0) 100%)",
@@ -128,7 +128,7 @@ export function VideoTimeline() {
               {/* Sliding active indicator */}
               <span
                 aria-hidden="true"
-                className="absolute top-1.5 bottom-1.5 rounded-full transition-[left] duration-[700ms] ease-[cubic-bezier(0.65,0,0.35,1)]"
+                className="absolute top-1.5 bottom-1.5 hidden rounded-full transition-[left] duration-[700ms] ease-[cubic-bezier(0.65,0,0.35,1)] sm:block"
                 style={{
                   width: `calc((100% - 0.75rem) / ${SEGMENTS.length})`,
                   left: `calc(${active} * (100% - 0.75rem) / ${SEGMENTS.length} + 0.375rem)`,
@@ -152,7 +152,7 @@ export function VideoTimeline() {
                     type="button"
                     onClick={() => setActive(i)}
                     className={cn(
-                      "relative z-10 flex flex-1 items-center justify-center gap-2.5 rounded-full px-5 py-3.5 text-sm transition-colors duration-300",
+                      "relative z-10 flex min-h-11 min-w-[128px] items-center justify-center gap-2 rounded-full px-3 py-2.5 text-xs transition-colors duration-300 sm:flex-1 sm:min-w-0 sm:px-5 sm:py-3.5 sm:text-sm",
                       isActive
                         ? "text-foreground"
                         : "text-foreground/45 hover:text-foreground/75",
@@ -176,7 +176,7 @@ export function VideoTimeline() {
           </div>
 
           {/* Progress dots */}
-          <div className="mt-12 flex items-center justify-center gap-2">
+          <div className="mt-8 flex items-center justify-center gap-2 sm:mt-12">
             {SEGMENTS.map((s, i) => (
               <span
                 key={s.id}
@@ -192,17 +192,17 @@ export function VideoTimeline() {
         </div>
 
         {/* Caption that swaps with the active state */}
-        <div className="mt-10 grid max-w-2xl gap-6 text-center sm:mt-14">
-          <h2 className="text-balance text-3xl font-medium tracking-tighter sm:text-5xl">
+        <div className="mt-8 grid max-w-2xl gap-5 text-center sm:mt-14 sm:gap-6">
+          <h2 className="text-balance text-2xl font-medium tracking-tighter sm:text-5xl">
             Tu pipeline tiene{" "}
             <span className="italic text-accent">tres motores</span>.
           </h2>
-          <div className="relative mx-auto h-12 w-full max-w-xl">
+          <div className="relative mx-auto h-14 w-full max-w-xl sm:h-12">
             {SEGMENTS.map((s, i) => (
               <p
                 key={s.id}
                 className={cn(
-                  "absolute inset-0 text-pretty text-base text-foreground/65 transition-all duration-500",
+                  "absolute inset-0 text-pretty text-sm text-foreground/65 transition-all duration-500 sm:text-base",
                   i === active
                     ? "translate-y-0 opacity-100"
                     : "translate-y-2 opacity-0",
@@ -215,12 +215,12 @@ export function VideoTimeline() {
           </div>
 
           {/* Metric strip */}
-          <div className="mx-auto mt-2 flex items-center divide-x divide-border rounded-full border border-border bg-card/60 px-1 py-1 backdrop-blur">
+          <div className="mx-auto mt-2 flex w-full flex-wrap items-center justify-center gap-1 rounded-2xl border border-border bg-card/60 px-1 py-1 backdrop-blur sm:w-auto sm:flex-nowrap sm:divide-x sm:rounded-full">
             {SEGMENTS.map((s, i) => (
               <div
                 key={s.id}
                 className={cn(
-                  "flex items-baseline gap-2 px-5 py-2 transition-opacity",
+                  "flex items-baseline gap-2 px-3 py-2 transition-opacity sm:px-5",
                   i === active ? "opacity-100" : "opacity-50",
                 )}
               >

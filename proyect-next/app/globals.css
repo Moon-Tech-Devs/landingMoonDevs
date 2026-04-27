@@ -282,4 +282,49 @@
   .animate-sweep {
     animation: bezel-sweep 5.5s ease-in-out infinite;
   }
+
+  @media (max-width: 640px) {
+    .bg-grid {
+      background-size: 40px 40px;
+    }
+
+    .bg-dot {
+      background-size: 16px 16px;
+    }
+
+    .mesh-radial {
+      background:
+        radial-gradient(420px circle at 15% 0%, oklch(0.82 0.22 152 / 0.12), transparent 55%),
+        radial-gradient(360px circle at 85% 10%, oklch(0.82 0.22 152 / 0.08), transparent 60%),
+        radial-gradient(520px circle at 50% 100%, oklch(0.82 0.22 152 / 0.1), transparent 55%);
+    }
+
+    .animate-marquee {
+      animation-duration: 52s;
+    }
+
+    .animate-float {
+      animation-duration: 7s;
+    }
+
+    .animate-halo {
+      animation-duration: 7s;
+    }
+
+    .animate-pulse-glow {
+      animation-duration: 3s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-float,
+    .animate-halo,
+    .animate-flow,
+    .animate-sweep,
+    .animate-pulse-glow,
+    .animate-chapter-in {
+      animation: none !important;
+    }
+  }
 }

@@ -39,12 +39,14 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
+  const homeJsonLd = JSON.stringify(homeProfessionalServiceJsonLd)
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homeProfessionalServiceJsonLd),
+          __html: homeJsonLd,
         }}
       />
       <HomeLanding />

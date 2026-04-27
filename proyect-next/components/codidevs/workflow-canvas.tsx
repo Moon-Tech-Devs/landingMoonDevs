@@ -69,8 +69,39 @@ export function WorkflowCanvas() {
           </p>
         </div>
 
+        {/* Mobile fallback */}
+        <div className="mt-10 grid gap-3 md:hidden">
+          {nodes.map((n) => {
+            const Icon = n.icon
+            return (
+              <article
+                key={`mobile-${n.id}`}
+                className="flex items-center gap-3 rounded-xl border border-border bg-card/60 p-3"
+              >
+                <div
+                  className={
+                    "flex size-9 shrink-0 items-center justify-center rounded-lg border border-border " +
+                    (n.accent ? "bg-accent/15" : "bg-white/[0.03]")
+                  }
+                >
+                  <Icon
+                    className={n.accent ? "size-4 text-accent" : "size-4 text-foreground"}
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-medium tracking-tight">{n.label}</p>
+                  <p className="truncate text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {n.sub}
+                  </p>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+
         {/* Canvas */}
-        <div className="relative mt-12 overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm">
+        <div className="relative mt-12 hidden overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm md:block">
           {/* Toolbar */}
           <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
             <div className="flex items-center gap-2">
@@ -94,7 +125,7 @@ export function WorkflowCanvas() {
           </div>
 
           {/* Canvas grid */}
-          <div className="relative aspect-[16/9] w-full bg-dot">
+          <div className="relative aspect-[16/9] min-h-[360px] w-full bg-dot">
             {/* Edges (SVG) */}
             <svg
               className="absolute inset-0 h-full w-full"
@@ -155,7 +186,7 @@ function CanvasNode({ node }: { node: Node }) {
     >
       <div
         className={
-          "group relative flex w-36 items-center gap-2.5 rounded-xl border border-border bg-background/80 p-2.5 backdrop-blur-md transition-transform hover:-translate-y-px sm:w-40"
+          "group relative flex w-32 items-center gap-2 rounded-xl border border-border bg-background/80 p-2 backdrop-blur-md transition-transform hover:-translate-y-px lg:w-40 lg:gap-2.5 lg:p-2.5"
         }
       >
         <div

@@ -1,34 +1,35 @@
 # AGENTS.md
 
 ## Repo shape (do not assume a framework)
-- This is a static single-page site.
-- Main entrypoint and all runtime JS logic: `index.html`.
-- Main styles: `styles.css`.
-- Crawl/indexing files live at repo root: `robots.txt`, `sitemap.xml`, `site.webmanifest`.
-- Root assets are referenced directly by filename (favicons, `image_large.png` for Open Graph/JSON-LD).
+- Proyecto principal: `proyect-next/` (Next.js App Router).
+- Entrypoints de rutas: `proyect-next/app/page.tsx` y `proyect-next/app/n8n/page.tsx`.
+- Estilos globales: `proyect-next/app/globals.css`.
+- SEO/crawl en App Router: `proyect-next/app/robots.ts` y `proyect-next/app/sitemap.ts`.
+- Assets públicos en `proyect-next/public/` (por ejemplo `image_large.png` e íconos).
 
 ## Commands and verification
-- Sitio estático en la raíz: sin build; revisar `index.html` en el navegador.
-- La app Next vive en `landing-n8n/` (allí sí hay `package.json` y `npm run build`).
-- Practical verification is file-level review plus browser check of `index.html`.
+- Ejecutar desde `proyect-next/`.
+- Comandos principales: `npm run dev`, `npm run build`, `npm run lint`.
+- Practical verification is `npm run build` + revisión visual en `npm run dev`.
 
-## High-risk edit points in `index.html`
-- JS selectors are hardcoded. If you rename IDs/classes below, update JS and nav links together:
-  - Sections/anchors: `#inicio`, `#nuestro-servicio`, `#servicios`, `#contacto`, `#faq`, `#formulario`
-  - Behavior hooks: `.topbar`, `.reveal`, `#formulario-whatsapp`, `#tipo-proyecto`, `#year`
-- WhatsApp number `593962562482` appears in multiple places (links, form script, JSON-LD). Update all in one pass.
+## High-risk edit points in Next
+- En `proyect-next/components/codidevs/home-landing.tsx` los IDs/anclas están acoplados a navegación interna (`#inicio`, `#nuestro-servicio`, `#servicios`, `#contacto`, `#faq`, `#formulario`).
+- Número WhatsApp `593962562482` aparece en varios puntos (`home-landing.tsx`, `lib/whatsapp-links.ts`, `lib/home-json-ld.ts`). Si cambia, actualizar en una sola pasada.
 
 ## SEO source of truth
-- SEO metadata is maintained directly in `index.html` `<head>` (canonical/hreflang, Open Graph, Twitter, JSON-LD).
+- SEO metadata se mantiene en App Router:
+  - `proyect-next/app/layout.tsx` (base metadata)
+  - `proyect-next/app/page.tsx` y `proyect-next/app/n8n/page.tsx` (metadata por ruta)
+  - `proyect-next/lib/home-json-ld.ts` (structured data)
 - Domain is hardcoded as `https://codidevs.com` across:
-  - `index.html` canonical/hreflang/og/twitter/json-ld URLs
-  - `robots.txt` sitemap line
-  - `sitemap.xml` `<loc>`
+  - metadata y JSON-LD en `app/*.tsx` + `lib/home-json-ld.ts`
+  - `proyect-next/app/robots.ts`
+  - `proyect-next/app/sitemap.ts`
 - If domain changes, update all references in the same change set.
 
 ## Styling gotcha already fixed
-- Infinite services marquee spacing depends on `.features { padding-right: ... }` in `styles.css`.
-- Removing that right padding reintroduces the visual seam/collision when the loop restarts.
+- Infinite services marquee spacing depende de los bloques duplicados en `proyect-next/components/codidevs/home-landing.tsx` y de utilidades en `proyect-next/app/globals.css`.
+- Cambios de spacing en ese carrusel pueden reintroducir seams al reiniciar el loop.
 
 ## Git hygiene specific to this repo
 - Usa `.gitignore` en la raíz. No subas `node_modules/`, `.next/`, `.vercel/`, ni archivos `*.tsbuildinfo`.

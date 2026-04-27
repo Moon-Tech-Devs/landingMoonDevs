@@ -14,8 +14,8 @@ const columns = [
 export function Footer() {
   return (
     <footer className="relative border-t border-border">
-      <div className="mx-auto max-w-6xl px-4 py-16">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+        <div className="grid gap-8 sm:gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Logo className="size-5 text-accent" />
@@ -56,7 +56,7 @@ export function Footer() {
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground/70">
             © 2026 Codidevs Labs · Forjado al borde de la automatización
           </p>
-          <div className="flex items-center gap-5 text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground sm:gap-5">
             <a href="#" className="transition-colors hover:text-foreground">
               Privacidad
             </a>
@@ -74,7 +74,7 @@ export function Footer() {
       <div className="relative overflow-hidden">
         <div
           aria-hidden="true"
-          className="pointer-events-none -mb-12 select-none bg-gradient-to-b from-foreground/[0.06] to-transparent bg-clip-text text-center text-[18vw] font-medium leading-none tracking-tighter text-transparent"
+          className="pointer-events-none -mb-4 select-none bg-gradient-to-b from-foreground/[0.06] to-transparent bg-clip-text text-center text-[min(18vw,9rem)] font-medium leading-none tracking-tighter text-transparent sm:-mb-8"
         >
           codidevs
         </div>

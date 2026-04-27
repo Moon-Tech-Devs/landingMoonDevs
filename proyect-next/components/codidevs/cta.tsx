@@ -3,9 +3,9 @@ import { WA_N8N_AUDITORIA, WA_N8N_COTIZAR } from "@/lib/whatsapp-links"
 
 export function CTA() {
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" className="relative py-20 sm:py-28 lg:py-32">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="border-glow relative overflow-hidden rounded-3xl border border-border bg-card/40 p-10 sm:p-16 backdrop-blur-md">
+        <div className="border-glow relative overflow-hidden rounded-3xl border border-border bg-card/40 p-6 sm:p-10 lg:p-16 backdrop-blur-md">
           <div
             className="pointer-events-none absolute inset-0 mesh-radial opacity-90"
             aria-hidden="true"
@@ -20,7 +20,7 @@ export function CTA() {
               <Sparkles className="size-3 text-accent" />
               Auditoría AI gratis · 30 min
             </span>
-            <h2 className="mt-6 max-w-3xl text-balance text-4xl font-medium tracking-tighter sm:text-6xl lg:text-[72px] lg:leading-[0.95]">
+            <h2 className="mt-6 max-w-3xl text-balance text-[clamp(2rem,8vw,4.5rem)] font-medium tracking-tighter lg:leading-[0.95]">
               Deja de escalar{" "}
               <span className="italic font-light text-muted-foreground">contratando</span>.
               <br />
@@ -32,12 +32,12 @@ export function CTA() {
               sin decks.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
+            <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center">
               <a
                 href={WA_N8N_AUDITORIA}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-accent-foreground shadow-[0_8px_24px_oklch(0.82_0.22_152/0.35)] transition-transform hover:-translate-y-px"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-accent-foreground shadow-[0_8px_24px_oklch(0.82_0.22_152/0.35)] transition-transform hover:-translate-y-px sm:w-auto"
               >
                 Reservar auditoría
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -46,7 +46,7 @@ export function CTA() {
                 href={WA_N8N_COTIZAR}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.02] px-5 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-colors hover:bg-white/[0.05]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white/[0.02] px-5 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-colors hover:bg-white/[0.05] sm:w-auto"
               >
                 Cotizar por WhatsApp
               </a>

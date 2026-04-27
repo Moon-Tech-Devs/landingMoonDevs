@@ -60,16 +60,16 @@ export function Hero() {
       </div>
 
       {/* Min-height stage so the hero feels editorial */}
-      <div className="relative mx-auto flex min-h-[88svh] max-w-7xl flex-col px-4 pt-40 pb-16 sm:pt-44 sm:pb-20">
+      <div className="relative mx-auto flex min-h-[78svh] max-w-7xl flex-col px-4 pb-14 pt-28 sm:min-h-[85svh] sm:pb-20 sm:pt-36 lg:min-h-[88svh] lg:pt-44">
         {/* Centered headline */}
         <div className="flex flex-1 flex-col items-center justify-center text-center">
-          <h1 className="relative max-w-6xl text-balance text-5xl font-semibold tracking-tighter text-foreground drop-shadow-[0_4px_28px_oklch(0_0_0/0.7)] sm:text-7xl md:text-8xl lg:text-[120px] lg:leading-[0.92]">
+          <h1 className="relative max-w-6xl text-balance text-[clamp(2.1rem,9vw,7.5rem)] font-semibold tracking-[-0.03em] text-foreground drop-shadow-[0_4px_28px_oklch(0_0_0/0.7)] lg:leading-[0.92]">
             <span className="relative inline-block">
               {"Sin equipos. Sin demoras."}
               {/* Strikethrough — emerald slash */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute left-[-2%] right-[-2%] top-1/2 h-[6px] -translate-y-1/2 rotate-[-2deg] rounded-full bg-accent shadow-[0_0_24px_oklch(0.82_0.22_152/0.7)]"
+                className="pointer-events-none absolute left-[-2%] right-[-2%] top-1/2 h-[3px] -translate-y-1/2 rotate-[-2deg] rounded-full bg-accent shadow-[0_0_24px_oklch(0.82_0.22_152/0.7)] sm:h-[6px]"
               />
             </span>
             <br className="hidden sm:block" />
@@ -91,7 +91,7 @@ export function Hero() {
         </div>
 
         {/* Bottom-left subcopy + slide indicators */}
-        <div className="mt-16 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-12 flex flex-col gap-6 sm:mt-16 sm:flex-row sm:items-end sm:justify-between">
           <p className="max-w-sm text-pretty text-sm leading-relaxed text-foreground/80 drop-shadow-[0_1px_10px_oklch(0_0_0/0.6)]">
             Codidevs construye AI agents, flujos n8n e integraciones de API a la
             medida — para que tu equipo escale resultados, no nómina.
