@@ -5,7 +5,7 @@ import { TechCarousel } from "./tech-carousel"
 
 export function Stack() {
   return (
-    <section id="stack" className="relative border-y border-border py-20 sm:py-28 overflow-hidden bg-card/10">
+    <section id="stack" className="section-performance relative overflow-hidden border-y border-border bg-card/10 py-20 sm:py-28">
       <div
         className="pointer-events-none absolute inset-0 bg-dot opacity-20 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"
         aria-hidden="true"

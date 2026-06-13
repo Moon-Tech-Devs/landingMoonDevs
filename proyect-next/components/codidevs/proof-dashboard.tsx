@@ -35,21 +35,26 @@ export function ProofDashboard() {
   const [throughputData, setThroughputData] = useState<number[]>(initialBars)
   const [isStreaming, setIsStreaming] = useState(true)
   const [simActive, setSimActive] = useState(false)
+  const [inView, setInView] = useState(false)
   const logContainerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
-  // Format current time helper
-  const getFormattedTime = () => {
-    const d = new Date()
-    const hh = String(d.getHours()).padStart(2, "0")
-    const mm = String(d.getMinutes()).padStart(2, "0")
-    const ss = String(d.getSeconds()).padStart(2, "0")
-    const ms = String(d.getMilliseconds()).padStart(3, "0")
-    return `${hh}:${mm}:${ss}.${ms}`
-  }
+  useEffect(() => {
+    const node = sectionRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.08 },
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
 
   // Periodic random logs to keep dashboard looking alive
   useEffect(() => {
-    if (simActive) return
+    if (!inView || simActive) return
 
     const interval = setInterval(() => {
       const wfs = ["lead.enrich", "support.triage", "billing.reconcile", "rag.refresh"]
@@ -99,7 +104,16 @@ export function ProofDashboard() {
     }, 3800)
 
     return () => clearInterval(interval)
-  }, [simActive])
+  }, [inView, simActive])
+
+  const getFormattedTime = () => {
+    const d = new Date()
+    const hh = String(d.getHours()).padStart(2, "0")
+    const mm = String(d.getMinutes()).padStart(2, "0")
+    const ss = String(d.getSeconds()).padStart(2, "0")
+    const ms = String(d.getMilliseconds()).padStart(3, "0")
+    return `${hh}:${mm}:${ss}.${ms}`
+  }
 
   // Simulation flow handler matching the SVG timeline
   useEffect(() => {
@@ -217,7 +231,7 @@ export function ProofDashboard() {
   ]
 
   return (
-    <section id="proof" className="relative py-24 sm:py-32">
+    <section ref={sectionRef} id="proof" className="section-performance relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex flex-col items-start gap-3">
           <span className="label-mono text-primary/80">— Resultados</span>
@@ -230,7 +244,7 @@ export function ProofDashboard() {
           </p>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm shadow-[0_12px_40px_oklch(0_0_0/0.05)]">
+        <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-card/30 shadow-[0_12px_40px_oklch(0_0_0/0.05)] backdrop-blur-sm max-md:bg-card/95 max-md:backdrop-blur-none">
           {/* Toolbar */}
           <div className="flex items-center justify-between border-b border-border px-5 py-3">
             <div className="flex items-center gap-3">
@@ -244,7 +258,7 @@ export function ProofDashboard() {
             </div>
             <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <span className={cn("size-1.5 rounded-full", isStreaming ? "bg-accent animate-pulse-glow" : "bg-muted")} />
+                <span className={cn("size-1.5 rounded-full max-md:animate-none", isStreaming ? "bg-accent animate-pulse-glow" : "bg-muted")} />
                 {simActive ? "ejecutando flujo" : "streaming en vivo"}
               </span>
               <span className="hidden sm:inline">·</span>
@@ -334,7 +348,7 @@ export function ProofDashboard() {
 
               <div className="rounded-xl border border-border bg-background/50 p-4">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="flex size-1.5 rounded-full bg-accent animate-pulse-glow" />
+                  <span className="flex size-1.5 rounded-full bg-accent animate-pulse-glow max-md:animate-none" />
                   <span className="font-medium tracking-tight text-foreground/90">Sistemas 100% operativos</span>
                 </div>
                 <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground/75 text-left">

@@ -1,9 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Sparkles, Workflow, Braces, ArrowUpRight } from "lucide-react"
+import { Sparkles, Workflow, Braces } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
 
 type Segment = {
   id: string
@@ -58,7 +57,7 @@ export function VideoTimeline() {
   return (
     <section
       id="motor"
-      className="relative overflow-hidden px-4 py-20 sm:py-28 lg:py-36"
+      className="section-performance relative overflow-hidden px-4 py-20 sm:py-28 lg:py-36"
     >
       {/* Section ambient mesh */}
       <div
@@ -66,13 +65,13 @@ export function VideoTimeline() {
         aria-hidden="true"
       >
         <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute left-1/2 top-1/2 size-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,oklch(0.65_0.22_285/0.07)_0%,transparent_60%)]" />
+        <div className="absolute left-1/2 top-1/2 size-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(29,155,82,0.07)_0%,transparent_60%)]" />
       </div>
 
       <div className="relative mx-auto flex max-w-5xl flex-col items-center">
         {/* Eyebrow */}
         <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-          <span className="size-1 rounded-full bg-primary animate-pulse-glow" />
+          <span className="size-1 rounded-full bg-primary animate-pulse-glow max-md:animate-none" />
           Codidevs Engine
         </div>
 
@@ -84,16 +83,16 @@ export function VideoTimeline() {
           {/* Floor halo */}
           <div
             aria-hidden="true"
-            className="animate-halo pointer-events-none absolute left-1/2 top-full -translate-x-1/2 -translate-y-2 h-24 w-[78%] rounded-[100%] bg-primary/30 blur-3xl"
+            className="animate-halo pointer-events-none absolute left-1/2 top-full -translate-x-1/2 -translate-y-2 h-24 w-[78%] rounded-[100%] bg-primary/30 blur-3xl max-md:hidden"
           />
           {/* Soft shadow under */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 h-12 w-[60%] rounded-[100%] bg-black/15 blur-2xl"
+            className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 h-12 w-[60%] rounded-[100%] bg-black/15 blur-2xl max-md:hidden"
           />
 
           {/* The hardware pill */}
-          <div className="animate-float relative">
+          <div className="animate-float relative max-md:animate-none">
             <div
               className="relative flex items-stretch gap-0 overflow-x-auto rounded-full p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{
@@ -108,8 +107,8 @@ export function VideoTimeline() {
                   "0 0 0 1px oklch(0.24 0.015 256 / 0.08)",
                   // ambient drop shadow
                   "0 24px 60px -12px oklch(0 0 0 / 0.08)",
-                  // violet rim glow
-                  "0 0 60px -10px oklch(0.55 0.22 285 / 0.12)",
+                  // green rim glow
+                  "0 0 60px -10px rgba(29, 155, 82, 0.12)",
                 ].join(", "),
               }}
             >
@@ -123,7 +122,7 @@ export function VideoTimeline() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
               >
-                <span className="animate-sweep absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <span className="animate-sweep absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent max-md:hidden" />
               </span>
 
               {/* Sliding active indicator */}
@@ -136,7 +135,7 @@ export function VideoTimeline() {
                   background:
                     "linear-gradient(180deg, oklch(1 0 0) 0%, oklch(0.98 0 0) 100%)",
                   boxShadow: [
-                    "0 0 0 1px oklch(0.55 0.22 285 / 0.15) inset",
+                    "0 0 0 1px rgba(29, 155, 82, 0.15) inset",
                     "0 1px 0 0 oklch(1 0 0) inset",
                     "0 -1px 0 0 oklch(0 0 0 / 0.06) inset",
                     "0 4px 12px oklch(0 0 0 / 0.06)",
@@ -216,7 +215,7 @@ export function VideoTimeline() {
           </div>
 
           {/* Metric strip */}
-          <div className="mx-auto mt-2 flex w-full flex-wrap items-center justify-center gap-1 rounded-2xl border border-border bg-card/60 px-1 py-1 backdrop-blur sm:w-auto sm:flex-nowrap sm:divide-x sm:rounded-full">
+          <div className="mx-auto mt-2 flex w-full flex-wrap items-center justify-center gap-1 rounded-2xl border border-border bg-card/60 px-1 py-1 backdrop-blur max-md:bg-card/95 max-md:backdrop-blur-none sm:w-auto sm:flex-nowrap sm:divide-x sm:rounded-full">
             {SEGMENTS.map((s, i) => (
               <div
                 key={s.id}

@@ -112,13 +112,13 @@ export function WorkflowCanvas() {
   }
 
   return (
-    <section id="workflow" className="relative overflow-hidden border-y border-border py-24 sm:py-32">
+    <section id="workflow" className="section-performance relative overflow-hidden border-y border-border py-24 sm:py-32">
       <div
         className="pointer-events-none absolute inset-0 bg-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl max-md:hidden"
         aria-hidden="true"
       />
 
@@ -135,7 +135,7 @@ export function WorkflowCanvas() {
           <button
             onClick={triggerSimulation}
             disabled={simState === "running"}
-            className="group inline-flex items-center gap-2.5 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_oklch(0.65_0.22_285/0.3)] transition-transform hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed"
+            className="group inline-flex items-center gap-2.5 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_rgba(29,155,82,0.3)] transition-transform hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {simState === "running" ? "Ejecutando simulación..." : "Ejecutar simulación"}
             <span className="flex size-2 items-center justify-center rounded-full bg-accent animate-pulse" />
@@ -152,7 +152,7 @@ export function WorkflowCanvas() {
                 key={`mobile-${n.id}`}
                 className={`flex items-center gap-3 rounded-xl border p-3 transition-all duration-300 ${
                   isActive
-                    ? "border-accent bg-accent/10 shadow-[0_0_15px_oklch(0.72_0.16_200/0.15)]"
+                    ? "border-accent bg-accent/10 shadow-[0_0_15px_rgba(60,159,90,0.15)]"
                     : "border-border bg-card/60"
                 }`}
               >
@@ -184,7 +184,7 @@ export function WorkflowCanvas() {
         </div>
 
         {/* Canvas */}
-        <div className="relative mt-12 hidden overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm md:block">
+        <div className="relative mt-12 hidden overflow-hidden rounded-3xl border border-border bg-card/30 backdrop-blur-sm max-md:bg-card/95 max-md:backdrop-blur-none md:block">
           {/* Toolbar */}
           <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
             <div className="flex items-center gap-2">
@@ -218,8 +218,8 @@ export function WorkflowCanvas() {
             >
               <defs>
                 <linearGradient id="edge-grad" x1="0" x2="1">
-                  <stop offset="0%" stopColor="oklch(0.65 0.22 285)" stopOpacity="0.1" />
-                  <stop offset="100%" stopColor="oklch(0.72 0.16 200)" stopOpacity="0.85" />
+                  <stop offset="0%" stopColor="#1D9B52" stopOpacity="0.1" />
+                  <stop offset="100%" stopColor="#3C9F5A" stopOpacity="0.85" />
                 </linearGradient>
               </defs>
               {edges.map((e, i) => {
@@ -258,7 +258,7 @@ export function WorkflowCanvas() {
                     {/* Glowing outer pulse */}
                     <motion.circle
                       r="1.2"
-                      fill="oklch(0.72 0.16 200)"
+                      fill="#3C9F5A"
                       initial={{ offsetDistance: "0%" }}
                       animate={{ offsetDistance: "100%" }}
                       exit={{ opacity: 0 }}
@@ -266,7 +266,7 @@ export function WorkflowCanvas() {
                       style={{
                         offsetPath: `path('${re.d}')`,
                         offsetRotate: "auto",
-                        filter: "drop-shadow(0 0 5px oklch(0.72 0.16 200 / 0.8))"
+                        filter: "drop-shadow(0 0 5px rgba(60, 159, 90, 0.8))"
                       }}
                     />
                     {/* Inner intense pulse core */}
@@ -319,7 +319,7 @@ function CanvasNode({ node, isActive }: { node: Node; isActive: boolean }) {
       <div
         className={`group relative flex w-32 items-center gap-2 rounded-xl border p-2 backdrop-blur-md transition-all duration-300 lg:w-40 lg:gap-2.5 lg:p-2.5 ${
           isActive
-            ? "border-accent bg-accent/15 shadow-[0_0_20px_oklch(0.72_0.16_200/0.25)]"
+            ? "border-accent bg-accent/15 shadow-[0_0_20px_rgba(60, 159, 90, 0.25)]"
             : "border-border bg-background/80 hover:-translate-y-px"
         }`}
       >

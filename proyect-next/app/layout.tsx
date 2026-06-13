@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { EffectsProvider } from "@/components/codidevs/effects-provider"
 import "./globals.css"
 
 const geist = Geist({
@@ -13,12 +14,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",
+  preload: false,
 })
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -54,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} bg-background`}>
       <body className="font-sans antialiased selection:bg-accent/25 selection:text-foreground">
-        {children}
+        <EffectsProvider>{children}</EffectsProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

@@ -3,15 +3,15 @@ import { WA_N8N_AUDITORIA, WA_N8N_COTIZAR } from "@/lib/whatsapp-links"
 
 export function CTA() {
   return (
-    <section id="contact" className="relative py-20 sm:py-28 lg:py-32">
+    <section id="contact" className="section-performance relative py-20 sm:py-28 lg:py-32">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="border-glow relative overflow-hidden rounded-3xl border border-border bg-card/40 p-6 sm:p-10 lg:p-16 backdrop-blur-md">
+        <div className="border-glow relative overflow-hidden rounded-3xl border border-border bg-card/40 p-6 backdrop-blur-md max-md:bg-card/95 max-md:backdrop-blur-none sm:p-10 lg:p-16">
           <div
             className="pointer-events-none absolute inset-0 mesh-radial opacity-90"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute -top-32 left-1/2 size-[480px] -translate-x-1/2 rounded-full bg-accent/15 blur-3xl"
+            className="pointer-events-none absolute -top-32 left-1/2 size-[480px] -translate-x-1/2 rounded-full bg-accent/15 blur-3xl max-md:hidden"
             aria-hidden="true"
           />
 
@@ -37,7 +37,7 @@ export function CTA() {
                 href={WA_N8N_AUDITORIA}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-accent-foreground shadow-[0_8px_24px_oklch(0.82_0.22_152/0.35)] transition-transform hover:-translate-y-px sm:w-auto"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-accent-foreground shadow-[0_8px_24px_rgba(60,159,90,0.35)] transition-transform hover:-translate-y-px sm:w-auto"
               >
                 Reservar auditoría
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -46,7 +46,7 @@ export function CTA() {
                 href={WA_N8N_COTIZAR}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white/[0.02] px-5 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-colors hover:bg-white/[0.05] sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-white/[0.02] px-5 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-colors hover:bg-white/[0.05] max-md:backdrop-blur-none sm:w-auto"
               >
                 Cotizar por WhatsApp
               </a>

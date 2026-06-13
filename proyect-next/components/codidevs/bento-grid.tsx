@@ -193,9 +193,9 @@ function GraphVisual() {
       <svg viewBox="0 0 200 80" className="h-full w-full">
         <defs>
           <linearGradient id="bg-line" x1="0" x2="1">
-            <stop offset="0%" stopColor="oklch(0.65 0.22 285)" stopOpacity="0" />
-            <stop offset="50%" stopColor="oklch(0.72 0.16 200)" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="oklch(0.65 0.22 285)" stopOpacity="0" />
+            <stop offset="0%" stopColor="#1D9B52" stopOpacity="0" />
+            <stop offset="50%" stopColor="#3C9F5A" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#1D9B52" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path
@@ -219,8 +219,8 @@ function GraphVisual() {
           [190, 25],
         ].map(([cx, cy], i) => (
           <g key={i}>
-            <circle cx={cx} cy={cy} r="3" fill="oklch(0.72 0.16 200)" />
-            <circle cx={cx} cy={cy} r="6" fill="oklch(0.72 0.16 200)" opacity="0.25" />
+            <circle cx={cx} cy={cy} r="3" fill="#3C9F5A" />
+            <circle cx={cx} cy={cy} r="6" fill="#3C9F5A" opacity="0.25" />
           </g>
         ))}
       </svg>

@@ -20,7 +20,7 @@ export function SiteFooter() {
               plataformas web, automatizaciones e integraciones para empresas en crecimiento.
             </p>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground">
-              <span className="size-1.5 rounded-full bg-accent animate-pulse-glow" />
+              <span className="size-1.5 rounded-full bg-accent animate-pulse-glow max-md:animate-none" />
               Sistemas medibles, mantenibles y listos para escalar.
             </div>
           </div>

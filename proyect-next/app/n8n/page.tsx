@@ -1,14 +1,52 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { Nav } from "@/components/codidevs/nav"
 import { Hero } from "@/components/codidevs/hero"
-import { VideoTimeline } from "@/components/codidevs/video-timeline"
-import { Stack } from "@/components/codidevs/stack"
-import { BentoGrid } from "@/components/codidevs/bento-grid"
-import { WorkflowCanvas } from "@/components/codidevs/workflow-canvas"
-import { ProofDashboard } from "@/components/codidevs/proof-dashboard"
 import { CTA } from "@/components/codidevs/cta"
 import { Footer } from "@/components/codidevs/footer"
 import { AmbientBackground } from "@/components/codidevs/ambient-background"
+
+const VideoTimeline = dynamic(
+  () => import("@/components/codidevs/video-timeline").then((mod) => ({ default: mod.VideoTimeline })),
+  {
+    loading: () => (
+      <div className="section-performance min-h-[420px] animate-pulse px-4 py-20" aria-hidden="true" />
+    ),
+  },
+)
+
+const Stack = dynamic(() => import("@/components/codidevs/stack").then((mod) => ({ default: mod.Stack })), {
+  loading: () => (
+    <div className="section-performance min-h-[280px] animate-pulse border-y border-border bg-card/10" aria-hidden="true" />
+  ),
+})
+
+const BentoGrid = dynamic(
+  () => import("@/components/codidevs/bento-grid").then((mod) => ({ default: mod.BentoGrid })),
+  {
+    loading: () => (
+      <div className="section-performance min-h-[360px] animate-pulse border-y border-border" aria-hidden="true" />
+    ),
+  },
+)
+
+const WorkflowCanvas = dynamic(
+  () => import("@/components/codidevs/workflow-canvas").then((mod) => ({ default: mod.WorkflowCanvas })),
+  {
+    loading: () => (
+      <div className="section-performance min-h-[420px] animate-pulse border-y border-border" aria-hidden="true" />
+    ),
+  },
+)
+
+const ProofDashboard = dynamic(
+  () => import("@/components/codidevs/proof-dashboard").then((mod) => ({ default: mod.ProofDashboard })),
+  {
+    loading: () => (
+      <div className="section-performance min-h-[480px] animate-pulse py-24" aria-hidden="true" />
+    ),
+  },
+)
 
 export const metadata: Metadata = {
   title: "Automatizaciones AI y n8n",
