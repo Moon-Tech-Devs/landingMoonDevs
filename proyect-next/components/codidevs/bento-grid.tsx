@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Bot,
   GitBranch,
@@ -10,6 +12,8 @@ import {
   Network,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { SpotlightCard } from "./spotlight-card"
+import { motion } from "framer-motion"
 
 type Cell = {
   icon: typeof Bot
@@ -78,8 +82,8 @@ export function BentoGrid() {
   return (
     <section id="grid" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex flex-col items-start gap-3">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent">— La Grilla</span>
+        <div className="flex flex-col items-start gap-3 text-left">
+          <span className="text-xs uppercase tracking-[0.2em] text-primary font-bold">— La Grilla</span>
           <h2 className="max-w-2xl text-balance text-3xl font-medium tracking-tighter sm:text-5xl">
             Soluciones, no decks de PowerPoint.
           </h2>
@@ -89,11 +93,32 @@ export function BentoGrid() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <motion.div 
+          className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 1 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.08 }
+            }
+          }}
+        >
           {cells.map((c) => (
-            <BentoCell key={c.title} cell={c} />
+            <motion.div
+              key={c.title}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
+              className={c.className}
+            >
+              <BentoCell cell={c} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -102,61 +127,59 @@ export function BentoGrid() {
 function BentoCell({ cell }: { cell: Cell }) {
   const Icon = cell.icon
   return (
-    <article
-      className={cn(
-        "border-glow group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-[0_1px_0_oklch(1_0_0/0.05)_inset,0_8px_24px_oklch(0_0_0/0.4)] transition-colors",
-        cell.className,
-      )}
+    <SpotlightCard
+      as="article"
+      className="h-full flex flex-col justify-between text-left p-6"
     >
-      <div className="flex items-start justify-between">
-        <div className="flex size-10 items-center justify-center rounded-xl border border-border bg-accent/10">
-          <Icon className="size-[18px] text-accent" strokeWidth={1.5} />
+      <div>
+        <div className="flex items-start justify-between">
+          <div className="flex size-10 items-center justify-center rounded-xl border border-border bg-primary/10">
+            <Icon className="size-[18px] text-primary" strokeWidth={1.5} />
+          </div>
+          {cell.tag && (
+            <span className="rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.15em] text-primary font-semibold">
+              {cell.tag}
+            </span>
+          )}
         </div>
-        {cell.tag && (
-          <span className="rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.15em] text-accent">
-            {cell.tag}
-          </span>
-        )}
+
+        <div className="mt-6">
+          <h3 className="text-lg font-medium tracking-tight">{cell.title}</h3>
+          <p className="mt-1.5 max-w-md text-sm leading-relaxed text-muted-foreground">
+            {cell.body}
+          </p>
+        </div>
       </div>
 
-      <div className="mt-6">
-        <h3 className="text-lg font-medium tracking-tight">{cell.title}</h3>
-        <p className="mt-1.5 max-w-md text-sm leading-relaxed text-muted-foreground">
-          {cell.body}
-        </p>
-      </div>
-
-      {cell.visual === "agent" && <AgentVisual />}
-      {cell.visual === "graph" && <GraphVisual />}
-      {cell.visual === "logs" && <LogsVisual />}
-
-      {/* Hover glow */}
-      <div
-        className="pointer-events-none absolute -bottom-24 left-1/2 size-56 -translate-x-1/2 rounded-full bg-accent/15 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
-        aria-hidden="true"
-      />
-    </article>
+      {cell.visual && (
+        <div className="mt-6">
+          {cell.visual === "agent" && <AgentVisual />}
+          {cell.visual === "graph" && <GraphVisual />}
+          {cell.visual === "logs" && <LogsVisual />}
+        </div>
+      )}
+    </SpotlightCard>
   )
 }
 
 function AgentVisual() {
   return (
-    <div className="relative mt-8 overflow-hidden rounded-xl border border-border bg-background/80 p-4">
+    <div className="relative overflow-hidden rounded-xl border border-border bg-background/50 p-4">
       <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
         <span className="flex size-1.5 rounded-full bg-accent animate-pulse-glow" />
         agent.run() · session_8c2a
       </div>
       <div className="mt-3 space-y-1.5 font-mono text-[11px] leading-relaxed">
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-left">
           <span className="text-accent">→</span> Plan: clasificar tickets de soporte
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-left">
           <span className="text-accent">→</span> Tool: <span className="text-foreground">search_kb</span>
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-left">
           <span className="text-accent">→</span> Tool: <span className="text-foreground">linear.create_issue</span>
         </p>
-        <p className="text-foreground/90">
+        <p className="text-foreground/90 text-left">
           <span className="text-accent">✓</span> Resueltos 14 / 17 tickets en 2.4s
         </p>
       </div>
@@ -166,13 +189,13 @@ function AgentVisual() {
 
 function GraphVisual() {
   return (
-    <div className="relative mt-8 h-24 overflow-hidden rounded-xl border border-border bg-background/80">
+    <div className="relative h-24 overflow-hidden rounded-xl border border-border bg-background/50">
       <svg viewBox="0 0 200 80" className="h-full w-full">
         <defs>
           <linearGradient id="bg-line" x1="0" x2="1">
-            <stop offset="0%" stopColor="oklch(0.82 0.22 152)" stopOpacity="0" />
-            <stop offset="50%" stopColor="oklch(0.82 0.22 152)" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="oklch(0.82 0.22 152)" stopOpacity="0" />
+            <stop offset="0%" stopColor="oklch(0.65 0.22 285)" stopOpacity="0" />
+            <stop offset="50%" stopColor="oklch(0.72 0.16 200)" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="oklch(0.65 0.22 285)" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path
@@ -183,7 +206,7 @@ function GraphVisual() {
         />
         <path
           d="M10 60 Q 50 10 100 40 T 190 25"
-          stroke="oklch(1 0 0 / 0.12)"
+          stroke="oklch(0 0 0 / 0.08)"
           strokeWidth="1"
           fill="none"
           className="animate-flow"
@@ -196,8 +219,8 @@ function GraphVisual() {
           [190, 25],
         ].map(([cx, cy], i) => (
           <g key={i}>
-            <circle cx={cx} cy={cy} r="3" fill="oklch(0.82 0.22 152)" />
-            <circle cx={cx} cy={cy} r="6" fill="oklch(0.82 0.22 152)" opacity="0.25" />
+            <circle cx={cx} cy={cy} r="3" fill="oklch(0.72 0.16 200)" />
+            <circle cx={cx} cy={cy} r="6" fill="oklch(0.72 0.16 200)" opacity="0.25" />
           </g>
         ))}
       </svg>
@@ -214,18 +237,18 @@ function LogsVisual() {
     { t: "12:04:23", e: "slack.notify", s: "ok" },
   ]
   return (
-    <div className="relative mt-8 overflow-hidden rounded-xl border border-border bg-background/80 p-3 font-mono text-[11px]">
-      <div className="grid grid-cols-[auto_1fr_auto] gap-x-3 gap-y-1.5">
+    <div className="relative overflow-hidden rounded-xl border border-border bg-background/50 p-3 font-mono text-[11px]">
+      <div className="grid grid-cols-[auto_1fr_auto] gap-x-3 gap-y-1.5 text-left">
         {rows.map((r, i) => (
           <div key={i} className="contents">
             <span className="text-muted-foreground/80">{r.t}</span>
             <span className="text-foreground/85">{r.e}</span>
             <span
               className={cn(
-                "rounded px-1.5 text-[10px] uppercase",
+                "rounded px-1.5 py-0.25 text-[10px] uppercase font-bold text-center",
                 r.s === "ok"
                   ? "bg-accent/15 text-accent"
-                  : "bg-amber-500/15 text-amber-400",
+                  : "bg-amber-500/15 text-amber-700",
               )}
             >
               {r.s}

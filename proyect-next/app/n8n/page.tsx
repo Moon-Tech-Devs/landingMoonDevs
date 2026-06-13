@@ -8,6 +8,7 @@ import { WorkflowCanvas } from "@/components/codidevs/workflow-canvas"
 import { ProofDashboard } from "@/components/codidevs/proof-dashboard"
 import { CTA } from "@/components/codidevs/cta"
 import { Footer } from "@/components/codidevs/footer"
+import { AmbientBackground } from "@/components/codidevs/ambient-background"
 
 export const metadata: Metadata = {
   title: "Automatizaciones AI y n8n",
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
 export default function N8NPage() {
   return (
     <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
+      <AmbientBackground />
       <Nav />
       <Hero />
       <VideoTimeline />

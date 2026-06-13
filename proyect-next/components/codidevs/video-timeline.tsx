@@ -1,8 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Sparkles, Workflow, Braces } from "lucide-react"
+import { Sparkles, Workflow, Braces, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 type Segment = {
   id: string
@@ -65,13 +66,13 @@ export function VideoTimeline() {
         aria-hidden="true"
       >
         <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute left-1/2 top-1/2 size-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,oklch(0.82_0.22_152/0.07)_0%,transparent_60%)]" />
+        <div className="absolute left-1/2 top-1/2 size-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,oklch(0.65_0.22_285/0.07)_0%,transparent_60%)]" />
       </div>
 
       <div className="relative mx-auto flex max-w-5xl flex-col items-center">
         {/* Eyebrow */}
         <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-          <span className="size-1 rounded-full bg-accent animate-pulse-glow" />
+          <span className="size-1 rounded-full bg-primary animate-pulse-glow" />
           Codidevs Engine
         </div>
 
@@ -83,12 +84,12 @@ export function VideoTimeline() {
           {/* Floor halo */}
           <div
             aria-hidden="true"
-            className="animate-halo pointer-events-none absolute left-1/2 top-full -translate-x-1/2 -translate-y-2 h-24 w-[78%] rounded-[100%] bg-accent/35 blur-3xl"
+            className="animate-halo pointer-events-none absolute left-1/2 top-full -translate-x-1/2 -translate-y-2 h-24 w-[78%] rounded-[100%] bg-primary/30 blur-3xl"
           />
           {/* Soft shadow under */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 h-12 w-[60%] rounded-[100%] bg-black/80 blur-2xl"
+            className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 h-12 w-[60%] rounded-[100%] bg-black/15 blur-2xl"
           />
 
           {/* The hardware pill */}
@@ -97,18 +98,18 @@ export function VideoTimeline() {
               className="relative flex items-stretch gap-0 overflow-x-auto rounded-full p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{
                 background:
-                  "linear-gradient(180deg, oklch(0.22 0.005 150) 0%, oklch(0.13 0.005 150) 45%, oklch(0.05 0 0) 100%)",
+                  "linear-gradient(180deg, oklch(0.97 0.005 256) 0%, oklch(0.94 0.005 256) 45%, oklch(0.90 0.01 256) 100%)",
                 boxShadow: [
                   // crisp top inner highlight
-                  "0 1px 0 0 oklch(1 0 0 / 0.18) inset",
+                  "0 1px 0 0 oklch(1 0 0 / 0.4) inset",
                   // bottom inner shade
-                  "0 -1px 0 0 oklch(0 0 0 / 0.9) inset",
-                  // outer chrome ring
-                  "0 0 0 1px oklch(0.32 0.005 150)",
+                  "0 -1px 0 0 oklch(0 0 0 / 0.04) inset",
+                  // outer bezel border
+                  "0 0 0 1px oklch(0.24 0.015 256 / 0.08)",
                   // ambient drop shadow
-                  "0 24px 60px -12px oklch(0 0 0 / 0.85)",
-                  // emerald rim glow
-                  "0 0 60px -10px oklch(0.82 0.22 152 / 0.45)",
+                  "0 24px 60px -12px oklch(0 0 0 / 0.08)",
+                  // violet rim glow
+                  "0 0 60px -10px oklch(0.55 0.22 285 / 0.12)",
                 ].join(", "),
               }}
             >
@@ -122,7 +123,7 @@ export function VideoTimeline() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
               >
-                <span className="animate-sweep absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+                <span className="animate-sweep absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </span>
 
               {/* Sliding active indicator */}
@@ -133,12 +134,12 @@ export function VideoTimeline() {
                   width: `calc((100% - 0.75rem) / ${SEGMENTS.length})`,
                   left: `calc(${active} * (100% - 0.75rem) / ${SEGMENTS.length} + 0.375rem)`,
                   background:
-                    "linear-gradient(180deg, oklch(0.18 0.04 152) 0%, oklch(0.10 0.02 152) 100%)",
+                    "linear-gradient(180deg, oklch(1 0 0) 0%, oklch(0.98 0 0) 100%)",
                   boxShadow: [
-                    "0 0 0 1px oklch(0.82 0.22 152 / 0.35) inset",
-                    "0 1px 0 0 oklch(1 0 0 / 0.12) inset",
-                    "0 -1px 0 0 oklch(0 0 0 / 0.6) inset",
-                    "0 0 24px oklch(0.82 0.22 152 / 0.45)",
+                    "0 0 0 1px oklch(0.55 0.22 285 / 0.15) inset",
+                    "0 1px 0 0 oklch(1 0 0) inset",
+                    "0 -1px 0 0 oklch(0 0 0 / 0.06) inset",
+                    "0 4px 12px oklch(0 0 0 / 0.06)",
                   ].join(", "),
                 }}
               />
@@ -162,7 +163,7 @@ export function VideoTimeline() {
                     <Icon
                       className={cn(
                         "size-4 transition-colors duration-300",
-                        isActive ? "text-accent" : "text-foreground/55",
+                        isActive ? "text-primary" : "text-foreground/55",
                       )}
                       strokeWidth={1.6}
                     />
@@ -183,7 +184,7 @@ export function VideoTimeline() {
                 className={cn(
                   "h-1 rounded-full transition-all duration-500",
                   i === active
-                    ? "w-8 bg-accent"
+                    ? "w-8 bg-primary"
                     : "w-1.5 bg-foreground/15",
                 )}
               />
@@ -195,7 +196,7 @@ export function VideoTimeline() {
         <div className="mt-8 grid max-w-2xl gap-5 text-center sm:mt-14 sm:gap-6">
           <h2 className="text-balance text-2xl font-medium tracking-tighter sm:text-5xl">
             Tu pipeline tiene{" "}
-            <span className="italic text-accent">tres motores</span>.
+            <span className="italic text-primary">tres motores</span>.
           </h2>
           <div className="relative mx-auto h-14 w-full max-w-xl sm:h-12">
             {SEGMENTS.map((s, i) => (
@@ -227,7 +228,7 @@ export function VideoTimeline() {
                 <span
                   className={cn(
                     "font-mono text-sm font-medium tracking-tight",
-                    i === active ? "text-accent" : "text-foreground/70",
+                    i === active ? "text-primary" : "text-foreground/70",
                   )}
                 >
                   {s.metric}

@@ -5,7 +5,7 @@ import { homeProfessionalServiceJsonLd } from "@/lib/home-json-ld"
 export const metadata: Metadata = {
   title: "Desarrollo de Software en Manta, Ecuador | CodiDevs",
   description:
-    "Desarrollamos software a medida, aplicaciones web, automatizaciones e integraciones API para empresas en Manta y todo Ecuador.",
+    "CodiDevs desarrolla software a medida, aplicaciones web, automatizaciones e integraciones API para empresas en Manta y Ecuador.",
   alternates: {
     canonical: "https://codidevs.com/",
     languages: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://codidevs.com/",
     title: "Desarrollo de Software en Manta, Ecuador | CodiDevs",
     description:
-      "Software a medida, aplicaciones web, automatizaciones e integraciones API para empresas en Manta y Ecuador.",
+      "Software a medida, aplicaciones web, automatizaciones, CRMs e integraciones API para empresas en Manta y Ecuador.",
     siteName: "CodiDevs",
     images: [
       {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Desarrollo de Software en Manta, Ecuador | CodiDevs",
     description:
-      "Software a medida, aplicaciones web, automatizaciones e integraciones API para empresas en Manta y Ecuador.",
+      "Software a medida, aplicaciones web, automatizaciones, CRMs e integraciones API para empresas en Manta y Ecuador.",
     images: ["https://codidevs.com/image_large.png"],
   },
 }

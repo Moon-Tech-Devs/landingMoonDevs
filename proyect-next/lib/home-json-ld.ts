@@ -7,7 +7,7 @@ export const homeProfessionalServiceJsonLd = {
   url: "https://codidevs.com/",
   image: "https://codidevs.com/image_large.png",
   description:
-    "CodiDevs desarrolla software a medida, aplicaciones web, automatizaciones e integraciones API para empresas en Manta y Ecuador.",
+    "CodiDevs desarrolla software a medida, aplicaciones web, automatizaciones, CRMs empresariales e integraciones API para empresas en Manta y Ecuador.",
   telephone: `+${WHATSAPP}`,
   address: {
     "@type": "PostalAddress",
@@ -25,6 +25,8 @@ export const homeProfessionalServiceJsonLd = {
     "Automatizaciones",
     "Integraciones API",
     "CRM empresarial",
+    "Dashboards operativos",
+    "Sistemas internos",
   ],
   contactPoint: {
     "@type": "ContactPoint",
