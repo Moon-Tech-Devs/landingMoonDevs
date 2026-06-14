@@ -510,7 +510,143 @@
   html[data-effects="lite"] .ambient-mouse-grid,
   html[data-effects="lite"] .ambient-mouse-dots,
   html[data-effects="lite"] .ambient-mouse-glow,
-  html[data-effects="lite"] .scan-lines {
+  html[data-effects="lite"] .scan-lines,
+  html[data-effects="lite"] .hero-orb {
     display: none !important;
+  }
+
+  /* Optimus-inspired utilities (CodiDevs green brand) */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted-foreground);
+  }
+
+  .section-eyebrow::before {
+    content: "";
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--primary);
+    opacity: 0.55;
+  }
+
+  .headline-display {
+    font-size: clamp(2.25rem, 6vw, 4.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+
+  .headline-accent {
+    background: linear-gradient(135deg, var(--primary), #5bb364, var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn-pill-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.75rem 1.35rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 12px 32px rgba(29, 155, 82, 0.22);
+    transition: transform 180ms ease;
+  }
+
+  .btn-pill-primary:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-pill-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--foreground);
+    padding: 0.75rem 1.35rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 180ms ease;
+  }
+
+  .btn-pill-secondary:hover {
+    background: var(--muted);
+  }
+
+  .capability-number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+  }
+
+  .capability-card {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--card);
+    padding: 1.5rem;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+
+  .capability-card:hover {
+    border-color: rgba(29, 155, 82, 0.22);
+  }
+
+  .hero-orb {
+    pointer-events: none;
+    position: absolute;
+    right: -8%;
+    top: 18%;
+    height: 28rem;
+    width: 28rem;
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at 35% 35%, rgba(191, 225, 188, 0.55), transparent 55%),
+      radial-gradient(circle at 65% 65%, rgba(29, 155, 82, 0.18), transparent 60%);
+    filter: blur(40px);
+    opacity: 0.85;
+  }
+
+  @keyframes metric-marquee-x {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-metric-marquee {
+    animation: metric-marquee-x 32s linear infinite;
+  }
+
+  @media (max-width: 768px), (hover: none) {
+    .hero-orb {
+      display: none !important;
+    }
+
+    .animate-metric-marquee {
+      animation: none !important;
+    }
+  }
+
+  html[data-effects="lite"] .animate-metric-marquee {
+    animation: none !important;
   }
 }

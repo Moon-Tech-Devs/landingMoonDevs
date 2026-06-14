@@ -13,10 +13,14 @@ import {
 } from "lucide-react"
 import { SiteFooter } from "./site-footer"
 import { SiteNav } from "./site-nav"
-import { SpotlightCard } from "./spotlight-card"
 import { AmbientBackground } from "./ambient-background"
 import { HomeContactForm } from "./home-contact-form"
 import { Reveal, RevealGroup } from "./motion-reveal"
+import { SectionHeader } from "./section-header"
+import { HeroOrb } from "./hero-orb"
+import { MetricMarquee } from "./metric-marquee"
+import { ProcessPanel } from "./process-panel"
+import { TestimonialCard } from "./testimonial-card"
 import { WA_HOME_REUNION } from "@/lib/whatsapp-links"
 import { cn } from "@/lib/utils"
 
@@ -147,6 +151,41 @@ const faqs = [
   },
 ]
 
+const metricMarqueeItems = [
+  { value: "100%", label: "visibilidad comercial", source: "CRM" },
+  { value: "12h/sem", label: "ahorro operativo", source: "Portal" },
+  { value: "1 min", label: "respuesta a leads", source: "WhatsApp" },
+  { value: "15 min", label: "diagnóstico inicial", source: "Meet" },
+  { value: "Sprints", label: "avance semanal", source: "CodiDevs" },
+]
+
+const dolores = [
+  {
+    step: "01",
+    icon: MessageCircle,
+    title: "Fuga de Leads",
+    body: "Tu equipo tarda más de 15 minutos en responder a prospectos de WhatsApp o Web. Estadísticamente, responder después de 30 minutos reduce la probabilidad de cierre en más de un 300%.",
+    cause: "Falta de automatización",
+    tone: "red" as const,
+  },
+  {
+    step: "02",
+    icon: FileText,
+    title: "Excel-dependencia Caótica",
+    body: "Los procesos clave de tu empresa (inventario, cotizaciones, órdenes) viven en hojas de cálculo compartidas. Un borrado accidental o falta de roles claros paraliza tu facturación.",
+    cause: "Dependencia de archivos locales",
+    tone: "amber" as const,
+  },
+  {
+    step: "03",
+    icon: AlertTriangle,
+    title: "Reproceso Humano",
+    body: "Tus empleados dedican más de 2 horas al día a copiar facturas, redactar correos manuales o traspasar contactos de una aplicación a otra. Estás pagando talento calificado por hacer tareas repetitivas.",
+    cause: "Silos de información",
+    tone: "primary" as const,
+  },
+]
+
 export function HomeLanding() {
   return (
     <>
@@ -167,46 +206,31 @@ export function HomeLanding() {
 
       <main id="inicio" className="relative min-h-screen overflow-x-clip bg-background text-foreground">
         <AmbientBackground />
+        <HeroOrb />
 
-        <section className="section-performance relative z-10 mx-auto grid min-h-[92svh] w-full max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-16 pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:pt-40">
+        <section className="section-performance relative z-10 mx-auto grid min-h-[88svh] w-full max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-10 pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:pt-36">
           <RevealGroup className="min-w-0 text-left" immediate>
-            <Reveal className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-card/80 px-3 py-1 text-xs text-muted-foreground shadow-[0_0_0_1px_rgba(29,155,82,0.08)_inset]">
-              <span className="size-1.5 rounded-full bg-primary animate-pulse-glow max-md:animate-none" />
-              Sistemas y Automatización de Procesos en Ecuador
+            <Reveal>
+              <span className="section-eyebrow">Sistemas y Automatización de Procesos en Ecuador</span>
             </Reveal>
 
-            <Reveal as="h1" className="mt-5 max-w-4xl break-words text-balance text-4xl font-semibold leading-[0.98] tracking-tight sm:text-5xl md:text-6xl lg:text-7.5xl">
+            <Reveal as="h1" className="headline-display mt-6 max-w-4xl text-balance">
               Detén las tareas manuales y recupera el{" "}
-              <span className="bg-gradient-to-r from-primary via-[#5BB364] to-accent bg-clip-text text-transparent">
-                control de tu operación
-              </span>
-              .
+              <span className="headline-accent">control de tu operación</span>.
             </Reveal>
 
             <Reveal as="p" className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               Diseñamos y desarrollamos sistemas internos, CRMs y automatizaciones que conectan tus herramientas actuales, reducen horas de trabajo manual y detienen la pérdida de leads. Hecho para empresas en Ecuador.
             </Reveal>
 
-            <Reveal className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#formulario"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_12px_32px_rgba(29,155,82,0.25)] transition-transform hover:-translate-y-px"
-              >
+            <Reveal className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#formulario" className="btn-pill-primary">
                 Solicitar Diagnóstico Gratuito
                 <ChevronRight className="size-4" />
               </a>
-              <a
-                href="#calculadora"
-                className="inline-flex items-center justify-center rounded-xl border border-border bg-card/80 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-              >
+              <a href="#calculadora" className="btn-pill-secondary">
                 Calcular pérdida operativa
               </a>
-            </Reveal>
-
-            <Reveal className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3">
-              <HeroStat value="Llamada 15m" label="diagnóstico inicial" />
-              <HeroStat value="Sprints" label="avance visible semanal" />
-              <HeroStat value="Ecuador" label="equipo 100% local" />
             </Reveal>
           </RevealGroup>
 
@@ -215,116 +239,74 @@ export function HomeLanding() {
           </Reveal>
         </section>
 
-        <section id="dolores" className="section-performance relative z-10 border-t border-border bg-card/10 py-20 sm:py-28">
+        <div className="relative z-10">
+          <MetricMarquee items={metricMarqueeItems} />
+        </div>
+
+        <section id="dolores" className="section-performance relative z-10 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4">
-            <Reveal className="text-left">
-              <span className="label-mono text-primary/80">— El Diagnóstico</span>
-              <h2 className="mt-3 max-w-3xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">
-                Las 3 fugas silenciosas de dinero que desangran a las empresas hoy.
-              </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                La mayoría de las ineficiencias no se ven a simple vista; ocurren en el día a día de tus empleados copiando datos, perdiendo leads y operando a ciegas.
-              </p>
-            </Reveal>
-
-            <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
-              <Reveal>
-                <SpotlightCard className="flex h-full flex-col justify-between border-red-500/10 text-left">
-                  <div>
-                    <div className="flex size-11 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/5">
-                      <MessageCircle className="size-5 text-red-400" />
-                    </div>
-                    <h3 className="mt-6 text-xl font-medium tracking-tight">1. Fuga de Leads</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Tu equipo tarda más de 15 minutos en responder a prospectos de WhatsApp o Web. Estadísticamente, responder después de 30 minutos reduce la probabilidad de cierre en más de un 300%.
-                    </p>
-                  </div>
-                  <span className="mt-5 block font-mono text-[10px] uppercase tracking-wider text-red-400/80">
-                    Causa: Falta de automatización
-                  </span>
-                </SpotlightCard>
-              </Reveal>
-
-              <Reveal>
-                <SpotlightCard className="flex h-full flex-col justify-between border-amber-500/10 text-left">
-                  <div>
-                    <div className="flex size-11 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/5">
-                      <FileText className="size-5 text-amber-400" />
-                    </div>
-                    <h3 className="mt-6 text-xl font-medium tracking-tight">2. Excel-dependencia Caótica</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Los procesos clave de tu empresa (inventario, cotizaciones, órdenes) viven en hojas de cálculo compartidas. Un borrado accidental o falta de roles claros paraliza tu facturación.
-                    </p>
-                  </div>
-                  <span className="mt-5 block font-mono text-[10px] uppercase tracking-wider text-amber-400/80">
-                    Causa: Dependencia de archivos locales
-                  </span>
-                </SpotlightCard>
-              </Reveal>
-
-              <Reveal>
-                <SpotlightCard className="flex h-full flex-col justify-between border-primary/10 text-left">
-                  <div>
-                    <div className="flex size-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/5">
-                      <AlertTriangle className="size-5 text-primary" />
-                    </div>
-                    <h3 className="mt-6 text-xl font-medium tracking-tight">3. Reproceso Humano</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Tus empleados dedican más de 2 horas al día a copiar facturas, redactar correos manuales o traspasar contactos de una aplicación a otra. Estás pagando talento calificado por hacer tareas repetitivas.
-                    </p>
-                  </div>
-                  <span className="mt-5 block font-mono text-[10px] uppercase tracking-wider text-primary/80">
-                    Causa: Silos de información
-                  </span>
-                </SpotlightCard>
-              </Reveal>
-            </RevealGroup>
-          </div>
-        </section>
-
-        <section id="nuestro-servicio" className="section-performance relative z-10 py-20 sm:py-28">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal>
-              <SectionIntro
-                eyebrow="Nuestros Servicios"
-                title="Ingeniería de software enfocada en eliminar cuellos de botella."
-                body="No creamos páginas web bonitas e inertes. Construimos las herramientas digitales que tu equipo necesita operar con rapidez, automatizando flujos de trabajo e integrando bases de datos."
+              <SectionHeader
+                eyebrow="El Diagnóstico"
+                title="Las 3 fugas silenciosas de dinero que desangran a las empresas hoy."
+                body="La mayoría de las ineficiencias no se ven a simple vista; ocurren en el día a día de tus empleados copiando datos, perdiendo leads y operando a ciegas."
               />
             </Reveal>
 
-            <RevealGroup className="grid gap-4 sm:grid-cols-2">
-              {services.map((service) => (
-                <Reveal key={service.title}>
-                  <ServiceCard service={service} />
+            <RevealGroup className="mt-12 grid gap-4 md:grid-cols-3">
+              {dolores.map((item) => (
+                <Reveal key={item.step}>
+                  <DolorCard item={item} />
                 </Reveal>
               ))}
             </RevealGroup>
           </div>
         </section>
 
-        <section id="servicios" className="section-performance relative z-10 border-t border-border py-20 sm:py-28">
+        <section id="nuestro-servicio" className="section-performance relative z-10 border-t border-border bg-card/10 py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4">
             <Reveal>
-              <SectionIntro
+              <SectionHeader
+                eyebrow="Nuestros Servicios"
+                title="Ingeniería de software enfocada en eliminar cuellos de botella."
+                body="No creamos páginas web bonitas e inertes. Construimos las herramientas digitales que tu equipo necesita operar con rapidez, automatizando flujos de trabajo e integrando bases de datos."
+              />
+            </Reveal>
+
+            <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2">
+              {services.map((service, index) => (
+                <Reveal key={service.title}>
+                  <ServiceCard service={service} index={index} />
+                </Reveal>
+              ))}
+            </RevealGroup>
+          </div>
+        </section>
+
+        <section id="servicios" className="section-performance relative z-10 py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4">
+            <Reveal>
+              <SectionHeader
                 eyebrow="Soluciones"
                 title="Sistemas reales para automatizar tu negocio."
                 body="Estos son escenarios comunes que resolvemos para empresas en Ecuador. Diseñamos a medida para adaptarnos al proceso real que ya te funciona."
                 centered
+                className="mx-auto"
               />
             </Reveal>
 
             <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {builds.map((item, index) => (
                 <Reveal key={item}>
-                  <SpotlightCard as="article" className="flex h-full flex-col justify-between hover:-translate-y-1">
+                  <article className="capability-card flex h-full flex-col justify-between text-left">
                     <div>
-                      <span className="font-mono text-xs font-bold text-primary">0{index + 1}</span>
-                      <h3 className="mt-5 text-left text-lg font-medium tracking-tight">{item}</h3>
-                      <p className="mt-3 text-left text-sm leading-relaxed text-muted-foreground">
+                      <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
+                      <h3 className="mt-5 text-lg font-medium tracking-tight">{item}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                         Diseño de interfaces intuitivas y flujos optimizados de carga de información.
                       </p>
                     </div>
-                  </SpotlightCard>
+                  </article>
                 </Reveal>
               ))}
             </RevealGroup>
@@ -336,50 +318,37 @@ export function HomeLanding() {
         <section className="section-performance relative z-10 border-y border-border py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4">
             <Reveal>
-              <SectionIntro
+              <SectionHeader
                 eyebrow="Cómo lo hacemos"
                 title="Entregas visibles cada semana, sin sorpresas."
                 body="Nuestra metodología ágil asegura que el sistema se adapte a tus necesidades de forma continua, cobrando únicamente por el alcance funcional validado."
                 centered
+                className="mx-auto"
               />
             </Reveal>
 
-            <RevealGroup className="mt-12 grid gap-4 md:grid-cols-4">
-              {process.map((item) => (
-                <Reveal key={item.step}>
-                  <SpotlightCard as="article" className="h-full text-left">
-                    <span className="font-mono text-xs font-bold text-primary">{item.step}</span>
-                    <h3 className="mt-5 text-lg font-medium tracking-tight">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-                  </SpotlightCard>
-                </Reveal>
-              ))}
-            </RevealGroup>
+            <Reveal className="mt-12">
+              <ProcessPanel steps={process} />
+            </Reveal>
           </div>
         </section>
 
         <section className="section-performance relative z-10 py-20 sm:py-28">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1fr_1fr]">
+          <div className="mx-auto max-w-6xl px-4">
             <Reveal>
-              <SectionIntro
+              <SectionHeader
                 eyebrow="Casos de Éxito"
                 title="Resultados de negocio medibles."
                 body="Nuestros sistemas automatizan la captura de prospectos y eliminan la ineficiencia del personal administrativo."
+                centered
+                className="mx-auto"
               />
             </Reveal>
 
-            <RevealGroup className="grid gap-4">
+            <RevealGroup className="mt-12 grid gap-4 md:grid-cols-3">
               {cases.map((item) => (
                 <Reveal key={item.title}>
-                  <SpotlightCard as="article">
-                    <div className="flex items-start justify-between gap-4 text-left">
-                      <h3 className="text-lg font-medium tracking-tight">{item.title}</h3>
-                      <span className="shrink-0 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary">
-                        {item.metric}
-                      </span>
-                    </div>
-                    <p className="mt-3 text-left text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-                  </SpotlightCard>
+                  <TestimonialCard title={item.title} body={item.body} metric={item.metric} />
                 </Reveal>
               ))}
             </RevealGroup>
@@ -388,25 +357,25 @@ export function HomeLanding() {
 
         <section id="contacto" className="section-performance relative z-10 px-4 py-20 sm:py-28">
           <Reveal>
-            <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-border bg-card/40 p-6 shadow-xl backdrop-blur max-md:bg-card/95 max-md:backdrop-blur-none md:p-10">
+            <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/8 via-card to-background p-8 md:p-12">
               <div className="grid items-center gap-8 text-left lg:grid-cols-[1fr_auto]">
                 <div>
-                  <span className="label-mono text-primary/80">Diagnóstico de Procesos</span>
-                  <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">
-                    Agenda una sesión de diagnóstico gratuita de 15 minutos.
+                  <span className="section-eyebrow">Diagnóstico de Procesos</span>
+                  <h2 className="headline-display mt-4 max-w-3xl text-balance text-3xl md:text-5xl">
+                    ¿Listo para recuperar el control de tu operación?
                   </h2>
                   <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-                    Revisamos tu flujo de trabajo operativo actual vía Meet para decirte exactamente qué procesos automatizar y cuántas horas podrías ahorrarle a tu empresa al mes.
+                    Agenda una sesión de diagnóstico gratuita de 15 minutos. Revisamos tu flujo operativo actual vía Meet para decirte exactamente qué procesos automatizar y cuántas horas podrías ahorrarle a tu empresa al mes.
                   </p>
                 </div>
                 <a
                   href={WA_HOME_REUNION}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_12px_32px_rgba(29,155,82,0.25)] transition-transform hover:-translate-y-px"
+                  className="btn-pill-primary whitespace-nowrap"
                 >
                   Reservar Diagnóstico en Meet
-                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="size-4" />
                 </a>
               </div>
             </div>
@@ -416,7 +385,7 @@ export function HomeLanding() {
         <section id="formulario" className="section-performance relative z-10 px-4 pb-20 sm:pb-28">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
             <Reveal className="text-left">
-              <SectionIntro
+              <SectionHeader
                 eyebrow="Diagnóstico Gratuito"
                 title="Describe tu proceso más ineficiente o lento."
                 body="Prepararemos una propuesta estructurada con la solución técnica, tiempos y costos aproximados, y te contactaremos de inmediato por WhatsApp."
@@ -430,18 +399,19 @@ export function HomeLanding() {
         <section id="faq" className="section-performance relative z-10 border-t border-border px-4 py-20 sm:py-28">
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <SectionIntro
+              <SectionHeader
                 eyebrow="FAQ"
                 title="Preguntas frecuentes sobre desarrollo a medida."
                 body="Respuestas directas para directores y gerentes de empresas."
                 centered
+                className="mx-auto"
               />
             </Reveal>
 
             <RevealGroup className="mt-10 grid gap-3">
               {faqs.map((faq) => (
                 <Reveal key={faq.question}>
-                  <details className="group rounded-xl border border-border bg-card/40 transition-colors duration-200 hover:border-primary/20">
+                  <details className="group rounded-xl border border-border bg-card/60 transition-colors duration-200 hover:border-primary/20">
                     <summary className="flex cursor-pointer list-none select-none items-center justify-between px-5 py-4 text-left text-sm font-medium tracking-tight">
                       {faq.question}
                       <span className="text-muted-foreground/80 transition-transform duration-300 group-open:rotate-180">↓</span>
@@ -460,46 +430,70 @@ export function HomeLanding() {
   )
 }
 
-function HeroStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-card/40 p-3 text-left">
-      <p className="text-xl font-semibold tracking-tight">{value}</p>
-      <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">{label}</p>
-    </div>
-  )
-}
-
-function SectionIntro({
-  eyebrow,
-  title,
-  body,
-  centered,
+function DolorCard({
+  item,
 }: {
-  eyebrow: string
-  title: string
-  body: string
-  centered?: boolean
+  item: (typeof dolores)[number]
 }) {
+  const Icon = item.icon
+  const toneClasses = {
+    red: {
+      card: "border-red-500/10",
+      iconWrap: "border-red-500/20 bg-red-500/5",
+      icon: "text-red-400",
+      cause: "text-red-400/80",
+    },
+    amber: {
+      card: "border-amber-500/10",
+      iconWrap: "border-amber-500/20 bg-amber-500/5",
+      icon: "text-amber-400",
+      cause: "text-amber-400/80",
+    },
+    primary: {
+      card: "border-primary/10",
+      iconWrap: "border-primary/20 bg-primary/5",
+      icon: "text-primary",
+      cause: "text-primary/80",
+    },
+  }[item.tone]
+
   return (
-    <div className={cn("flex flex-col gap-3 text-left", centered && "mx-auto max-w-3xl items-center text-center")}>
-      <span className="label-mono text-primary/80">{eyebrow}</span>
-      <h2 className="max-w-3xl text-balance text-3xl font-semibold tracking-tight md:text-5xl">{title}</h2>
-      <p className="max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">{body}</p>
-    </div>
+    <article className={cn("capability-card flex h-full flex-col justify-between", toneClasses.card)}>
+      <div>
+        <div className="flex items-start justify-between gap-4">
+          <span className="capability-number">{item.step}</span>
+          <div className={cn("flex size-10 items-center justify-center rounded-xl border", toneClasses.iconWrap)}>
+            <Icon className={cn("size-5", toneClasses.icon)} />
+          </div>
+        </div>
+        <h3 className="mt-6 text-xl font-medium tracking-tight">{item.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+      </div>
+      <span className={cn("mt-5 block font-mono text-[10px] uppercase tracking-wider", toneClasses.cause)}>
+        Causa: {item.cause}
+      </span>
+    </article>
   )
 }
 
-function ServiceCard({ service }: { service: (typeof services)[number] }) {
+function ServiceCard({
+  service,
+  index,
+}: {
+  service: (typeof services)[number]
+  index: number
+}) {
   const Icon = service.icon
   const content = (
-    <div className="text-left">
+    <article className="capability-card h-full text-left">
       <div className="flex items-start justify-between gap-4">
-        <div className="flex size-11 items-center justify-center rounded-xl border border-border bg-primary/10">
-          <Icon className="size-5 text-primary" strokeWidth={1.5} />
-        </div>
+        <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
         <span className="rounded-full border border-border bg-background px-2.5 py-1 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
           {service.meta}
         </span>
+      </div>
+      <div className="mt-6 flex size-11 items-center justify-center rounded-xl border border-border bg-primary/10">
+        <Icon className="size-5 text-primary" strokeWidth={1.5} />
       </div>
       <h3 className="mt-6 text-xl font-medium tracking-tight">{service.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
@@ -509,20 +503,16 @@ function ServiceCard({ service }: { service: (typeof services)[number] }) {
           <ArrowUpRight className="size-3.5" />
         </p>
       )}
-    </div>
+    </article>
   )
 
   if (service.href) {
     return (
-      <Link href={service.href} className="block h-full hover:-translate-y-1">
-        <SpotlightCard className="h-full">{content}</SpotlightCard>
+      <Link href={service.href} className="block h-full transition-transform hover:-translate-y-0.5">
+        {content}
       </Link>
     )
   }
 
-  return (
-    <SpotlightCard as="article" className="h-full hover:-translate-y-1">
-      {content}
-    </SpotlightCard>
-  )
+  return content
 }

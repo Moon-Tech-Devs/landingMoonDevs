@@ -30,67 +30,38 @@ export function AmbientBackground() {
     }
   }, [reduced])
 
-  if (reduced) {
-    return (
-      <div
-        ref={containerRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-      >
-        <div className="mesh-radial absolute inset-0 opacity-50" />
-      </div>
-    )
-  }
-
   return (
     <div
       ref={containerRef}
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
-      <div className="mesh-radial absolute inset-0 opacity-70" />
-      <div className="bg-grid absolute inset-0 opacity-[0.03]" />
-      <div className="bg-dot absolute inset-0 opacity-[0.04]" />
+      <div className="bg-grid absolute inset-0 opacity-[0.045]" />
+      <div className="mesh-radial absolute inset-0 opacity-40" />
 
-      <div
-        className="ambient-mouse-grid absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none md:opacity-100"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(29, 155, 82, 0.12) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(29, 155, 82, 0.12) 1px, transparent 1px)
-          `,
-          backgroundSize: "56px 56px",
-          WebkitMaskImage:
-            "radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, transparent 100%)",
-          maskImage:
-            "radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, transparent 100%)",
-        }}
-      />
+      {!reduced && (
+        <>
+          <div className="bg-dot absolute inset-0 opacity-[0.03]" />
 
-      <div
-        className="ambient-mouse-dots absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none md:opacity-100"
-        style={{
-          backgroundImage: `radial-gradient(rgba(60, 159, 90, 0.3) 1.5px, transparent 1.5px)`,
-          backgroundSize: "22px 22px",
-          WebkitMaskImage:
-            "radial-gradient(220px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, transparent 100%)",
-          maskImage:
-            "radial-gradient(220px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, transparent 100%)",
-        }}
-      />
+          <div
+            className="ambient-mouse-grid absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none md:opacity-100"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(29, 155, 82, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(29, 155, 82, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: "56px 56px",
+              WebkitMaskImage:
+                "radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, transparent 100%)",
+              maskImage:
+                "radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black 0%, transparent 100%)",
+            }}
+          />
 
-      <div
-        className="ambient-mouse-glow absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none md:opacity-100"
-        style={{
-          background: `radial-gradient(600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(29, 155, 82, 0.05) 0%, rgba(60, 159, 90, 0.02) 50%, transparent 100%)`,
-        }}
-      />
-
-      <div className="scan-lines absolute inset-0 opacity-[0.06]" />
-
-      <div className="ambient-aurora absolute -top-40 left-[14%] h-80 w-80 rounded-full bg-primary/20 blur-[120px] animate-aurora-1" />
-      <div className="ambient-aurora absolute top-[24%] right-[-8%] h-[34rem] w-[34rem] rounded-full bg-accent/8 blur-[150px] animate-aurora-2" />
-      <div className="ambient-aurora absolute bottom-[10%] left-[-10%] h-[28rem] w-[28rem] rounded-full bg-primary/6 blur-[140px] animate-aurora-3" />
+          <div className="ambient-aurora absolute -top-40 left-[14%] h-72 w-72 rounded-full bg-primary/15 blur-[100px] animate-aurora-1" />
+          <div className="ambient-aurora absolute bottom-[5%] right-[-5%] h-80 w-80 rounded-full bg-accent/6 blur-[120px] animate-aurora-2" />
+        </>
+      )}
     </div>
   )
 }

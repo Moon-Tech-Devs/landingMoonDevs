@@ -31,18 +31,18 @@ export function SiteNav({ links, ctas, homeHref = "/" }: SiteNavProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-6xl px-4 pt-4">
-        <nav className="relative flex items-center rounded-xl border border-border bg-background/72 px-3 py-2.5 shadow-[0_1px_0_rgba(60,159,90,0.12)_inset,0_16px_45px_rgba(0,0,0,0.42)] backdrop-blur-xl max-md:bg-background/95 max-md:backdrop-blur-none">
+        <nav className="relative flex items-center rounded-full border border-border bg-background/90 px-3 py-2 shadow-[0_8px_30px_oklch(0_0_0/0.04)] backdrop-blur-sm max-md:bg-background/95 max-md:backdrop-blur-none">
           <Link href={homeHref} className="flex flex-shrink-0 items-center gap-2.5 pl-1.5" onClick={close}>
             <Logo className="size-6 text-accent" />
             <span className="text-base font-semibold tracking-tight">CodiDevs</span>
           </Link>
 
-          <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 text-sm text-muted-foreground md:flex">
+          <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 text-sm text-muted-foreground md:flex">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="rounded-lg px-3 py-1.5 transition-colors hover:bg-foreground/[0.04] hover:text-foreground"
+                  className="rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/[0.04] hover:text-foreground"
                 >
                   {link.label}
                 </a>
@@ -50,7 +50,7 @@ export function SiteNav({ links, ctas, homeHref = "/" }: SiteNavProps) {
             ))}
           </ul>
 
-          <div className="ml-auto hidden flex-shrink-0 items-center gap-1.5 md:flex">
+          <div className="ml-auto hidden flex-shrink-0 items-center gap-2 md:flex">
             {ctas.map((cta) => (
               <NavButton key={cta.href} cta={cta} />
             ))}
@@ -61,14 +61,14 @@ export function SiteNav({ links, ctas, homeHref = "/" }: SiteNavProps) {
             aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
             aria-expanded={isOpen}
             onClick={() => setIsOpen((current) => !current)}
-            className="ml-auto inline-flex size-10 items-center justify-center rounded-lg border border-border bg-card text-foreground md:hidden"
+            className="ml-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card text-foreground md:hidden"
           >
             {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </nav>
 
         {isOpen && (
-          <div className="mt-2 rounded-xl border border-border bg-background/95 p-3 shadow-[0_16px_45px_oklch(0_0_0/0.42)] backdrop-blur-xl max-md:backdrop-blur-none md:hidden">
+          <div className="mt-2 rounded-2xl border border-border bg-background/95 p-3 shadow-[0_16px_45px_oklch(0_0_0/0.12)] md:hidden">
             <div className="flex flex-col gap-1.5 text-sm text-foreground">
               {links.map((link) => (
                 <a
@@ -103,10 +103,10 @@ function NavButton({ cta, mobile, onClick }: { cta: NavCta; mobile?: boolean; on
       rel={cta.external ? "noopener noreferrer" : undefined}
       onClick={onClick}
       className={cn(
-        "group inline-flex items-center justify-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium transition-all",
+        "group inline-flex items-center justify-center gap-1.5 text-sm font-medium transition-all",
         isPrimary
-          ? "bg-accent text-accent-foreground shadow-[0_8px_24px_rgba(60,159,90,0.22)] hover:-translate-y-px"
-          : "text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground",
+          ? "btn-pill-primary px-4 py-2"
+          : "rounded-full px-3.5 py-2 text-muted-foreground hover:bg-foreground/[0.04] hover:text-foreground",
         mobile && "w-full",
       )}
     >
