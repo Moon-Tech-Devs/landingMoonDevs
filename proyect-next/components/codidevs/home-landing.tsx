@@ -3,7 +3,6 @@ import dynamic from "next/dynamic"
 import {
   ArrowUpRight,
   Braces,
-  ChevronRight,
   DatabaseZap,
   FileText,
   MessageCircle,
@@ -18,6 +17,7 @@ import { HomeContactForm } from "./home-contact-form"
 import { Reveal, RevealGroup } from "./motion-reveal"
 import { SectionHeader } from "./section-header"
 import { HeroOrb } from "./hero-orb"
+import { HomeHero } from "./home-hero"
 import { MetricMarquee } from "./metric-marquee"
 import { ProcessPanel } from "./process-panel"
 import { TestimonialCard } from "./testimonial-card"
@@ -208,33 +208,13 @@ export function HomeLanding() {
         <AmbientBackground />
         <HeroOrb />
 
-        <section className="section-performance relative z-10 mx-auto grid min-h-[88svh] w-full max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-10 pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:pt-36">
-          <RevealGroup className="min-w-0 text-left" immediate>
-            <Reveal>
-              <span className="section-eyebrow">Sistemas y Automatización de Procesos en Ecuador</span>
-            </Reveal>
+        <HomeHero />
 
-            <Reveal as="h1" className="headline-display mt-6 max-w-4xl text-balance">
-              Detén las tareas manuales y recupera el{" "}
-              <span className="headline-accent">control de tu operación</span>.
-            </Reveal>
-
-            <Reveal as="p" className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Diseñamos y desarrollamos sistemas internos, CRMs y automatizaciones que conectan tus herramientas actuales, reducen horas de trabajo manual y detienen la pérdida de leads. Hecho para empresas en Ecuador.
-            </Reveal>
-
-            <Reveal className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="#formulario" className="btn-pill-primary">
-                Solicitar Diagnóstico Gratuito
-                <ChevronRight className="size-4" />
-              </a>
-              <a href="#calculadora" className="btn-pill-secondary">
-                Calcular pérdida operativa
-              </a>
-            </Reveal>
-          </RevealGroup>
-
-          <Reveal id="calculadora" className="reveal-scale min-w-0" immediate>
+        <section
+          id="calculadora"
+          className="section-performance relative z-10 mx-auto w-full max-w-6xl px-4 py-10 sm:py-14"
+        >
+          <Reveal className="reveal-scale min-w-0" immediate>
             <CalculadoraImpacto />
           </Reveal>
         </section>

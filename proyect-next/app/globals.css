@@ -596,16 +596,28 @@
     color: var(--primary);
   }
 
+  .surface-elevated {
+    box-shadow:
+      0 22px 60px oklch(0 0 0 / 0.08),
+      0 8px 24px oklch(0 0 0 / 0.04);
+  }
+
   .capability-card {
     border: 1px solid var(--border);
     border-radius: 1rem;
     background: var(--card);
     padding: 1.5rem;
-    transition: border-color 200ms ease, transform 200ms ease;
+    box-shadow:
+      0 22px 60px oklch(0 0 0 / 0.08),
+      0 8px 24px oklch(0 0 0 / 0.04);
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
   }
 
   .capability-card:hover {
     border-color: rgba(29, 155, 82, 0.22);
+    box-shadow:
+      0 26px 70px oklch(0 0 0 / 0.1),
+      0 10px 28px oklch(0 0 0 / 0.05);
   }
 
   .hero-orb {

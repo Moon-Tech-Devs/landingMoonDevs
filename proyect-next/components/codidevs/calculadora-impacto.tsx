@@ -56,7 +56,7 @@ export function CalculadoraImpacto() {
 
   return (
     <aside aria-label="Simulador de ROI de Automatización" className="relative">
-      <div className="relative overflow-hidden rounded-3xl border border-border bg-card/40 p-5 shadow-[0_22px_80px_oklch(0_0_0/0.06)] backdrop-blur max-md:bg-card/95 max-md:backdrop-blur-none sm:p-6">
+      <div className="surface-elevated relative overflow-hidden rounded-3xl border border-border bg-card/40 p-5 backdrop-blur max-md:bg-card/95 max-md:backdrop-blur-none sm:p-6">
         <div className="mb-5 flex items-center justify-between border-b border-border/60 pb-3">
           <div className="flex items-center gap-2">
             <span className="size-2.5 rounded-full bg-primary/80" />

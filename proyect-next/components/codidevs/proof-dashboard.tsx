@@ -224,10 +224,10 @@ export function ProofDashboard() {
   }, [])
 
   const stats = [
-    { label: "Runs / 24h", value: runsCount.toLocaleString(), trend: "+12.4%", icon: Activity },
+    { label: "Runs / 24h", value: runsCount.toLocaleString("es-EC"), trend: "+12.4%", icon: Activity },
     { label: "Tasa de éxito", value: `${successRate.toFixed(2)}%`, trend: "+0.02%", icon: CheckCircle2 },
     { label: "Latencia media", value: `${avgLatency}ms`, trend: "−18ms", icon: Clock },
-    { label: "Horas ahorradas", value: hoursSaved.toLocaleString(), trend: "+9.2%", icon: TrendingUp },
+    { label: "Horas ahorradas", value: hoursSaved.toLocaleString("es-EC"), trend: "+9.2%", icon: TrendingUp },
   ]
 
   return (
