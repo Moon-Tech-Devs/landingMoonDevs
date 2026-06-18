@@ -42,7 +42,7 @@ function AnimatedNumber({ value }: { value: number }) {
     return () => cancelAnimationFrame(animationFrame)
   }, [value])
 
-  return <span>{displayValue.toLocaleString()}</span>
+  return <span>{displayValue.toLocaleString("es-EC")}</span>
 }
 
 export function CalculadoraImpacto() {
@@ -58,12 +58,6 @@ export function CalculadoraImpacto() {
     <aside aria-label="Simulador de ROI de Automatización" className="relative">
       <div className="surface-elevated relative overflow-hidden rounded-3xl border border-border bg-card/40 p-5 backdrop-blur max-md:bg-card/95 max-md:backdrop-blur-none sm:p-6">
         <div className="mb-5 flex items-center justify-between border-b border-border/60 pb-3">
-          <div className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full bg-primary/80" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              codidevs/calculadora-roi
-            </span>
-          </div>
           <span className="rounded-full border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary">
             Impacto financiero
           </span>
@@ -89,7 +83,7 @@ export function CalculadoraImpacto() {
               step="1"
               value={horas}
               onChange={(e) => setHoras(Number(e.target.value))}
-              className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
+              className="range-input w-full accent-primary"
             />
           </div>
 
@@ -112,7 +106,7 @@ export function CalculadoraImpacto() {
               step="1"
               value={costo}
               onChange={(e) => setCosto(Number(e.target.value))}
-              className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
+              className="range-input w-full accent-primary"
             />
           </div>
         </div>

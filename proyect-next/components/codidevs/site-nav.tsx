@@ -31,18 +31,20 @@ export function SiteNav({ links, ctas, homeHref = "/" }: SiteNavProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-6xl px-4 pt-4">
-        <nav className="relative flex items-center rounded-full border border-border bg-background/90 px-3 py-2 shadow-[0_8px_30px_oklch(0_0_0/0.04)] backdrop-blur-sm max-md:bg-background/95 max-md:backdrop-blur-none">
-          <Link href={homeHref} className="flex flex-shrink-0 items-center gap-2.5 pl-1.5" onClick={close}>
-            <Logo className="size-6 text-accent" />
-            <span className="text-base font-semibold tracking-tight">CodiDevs</span>
-          </Link>
+        <nav className="flex items-center rounded-full border border-border bg-background/90 px-3 py-2 shadow-[0_8px_30px_oklch(0_0_0/0.04)] backdrop-blur-sm max-md:bg-background/95 max-md:backdrop-blur-none">
+          <div className="flex min-w-0 flex-1 items-center justify-start">
+            <Link href={homeHref} className="flex flex-shrink-0 items-center gap-2.5 pl-1.5" onClick={close}>
+              <Logo className="size-6 text-accent" />
+              <span className="text-base font-semibold tracking-tight">CodiDevs</span>
+            </Link>
+          </div>
 
-          <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 text-sm text-muted-foreground md:flex">
+          <ul className="hidden shrink-0 items-center gap-0.5 text-sm text-muted-foreground md:flex">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/[0.04] hover:text-foreground"
+                  className="whitespace-nowrap rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/[0.04] hover:text-foreground"
                 >
                   {link.label}
                 </a>
@@ -50,21 +52,23 @@ export function SiteNav({ links, ctas, homeHref = "/" }: SiteNavProps) {
             ))}
           </ul>
 
-          <div className="ml-auto hidden flex-shrink-0 items-center gap-2 md:flex">
-            {ctas.map((cta) => (
-              <NavButton key={cta.href} cta={cta} />
-            ))}
-          </div>
+          <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
+            <div className="hidden items-center gap-2 md:flex">
+              {ctas.map((cta) => (
+                <NavButton key={cta.href} cta={cta} />
+              ))}
+            </div>
 
-          <button
-            type="button"
-            aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((current) => !current)}
-            className="ml-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card text-foreground md:hidden"
-          >
-            {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+            <button
+              type="button"
+              aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen((current) => !current)}
+              className="inline-flex size-10 flex-shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground md:hidden"
+            >
+              {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </nav>
 
         {isOpen && (

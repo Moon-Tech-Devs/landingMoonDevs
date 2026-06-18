@@ -44,8 +44,6 @@ const Stack = dynamic(() => import("./stack").then((mod) => ({ default: mod.Stac
 
 const navLinks = [
   { label: "Dolores Comunes", href: "#dolores" },
-  { label: "Servicios", href: "#nuestro-servicio" },
-  { label: "Soluciones", href: "#servicios" },
   { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },
 ]
@@ -243,55 +241,7 @@ export function HomeLanding() {
           </div>
         </section>
 
-        <section id="nuestro-servicio" className="section-performance relative z-10 border-t border-border bg-card/10 py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-4">
-            <Reveal>
-              <SectionHeader
-                eyebrow="Nuestros Servicios"
-                title="Ingeniería de software enfocada en eliminar cuellos de botella."
-                body="No creamos páginas web bonitas e inertes. Construimos las herramientas digitales que tu equipo necesita operar con rapidez, automatizando flujos de trabajo e integrando bases de datos."
-              />
-            </Reveal>
 
-            <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2">
-              {services.map((service, index) => (
-                <Reveal key={service.title}>
-                  <ServiceCard service={service} index={index} />
-                </Reveal>
-              ))}
-            </RevealGroup>
-          </div>
-        </section>
-
-        <section id="servicios" className="section-performance relative z-10 py-20 sm:py-28">
-          <div className="mx-auto max-w-6xl px-4">
-            <Reveal>
-              <SectionHeader
-                eyebrow="Soluciones"
-                title="Sistemas reales para automatizar tu negocio."
-                body="Estos son escenarios comunes que resolvemos para empresas en Ecuador. Diseñamos a medida para adaptarnos al proceso real que ya te funciona."
-                centered
-                className="mx-auto"
-              />
-            </Reveal>
-
-            <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {builds.map((item, index) => (
-                <Reveal key={item}>
-                  <article className="capability-card flex h-full flex-col justify-between text-left">
-                    <div>
-                      <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
-                      <h3 className="mt-5 text-lg font-medium tracking-tight">{item}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                        Diseño de interfaces intuitivas y flujos optimizados de carga de información.
-                      </p>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </RevealGroup>
-          </div>
-        </section>
 
         <Stack />
 
@@ -337,7 +287,7 @@ export function HomeLanding() {
 
         <section id="contacto" className="section-performance relative z-10 px-4 py-20 sm:py-28">
           <Reveal>
-            <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/8 via-card to-background p-8 md:p-12">
+            <div className="surface-elevated mx-auto max-w-6xl overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/8 via-card to-background p-8 md:p-12">
               <div className="grid items-center gap-8 text-left lg:grid-cols-[1fr_auto]">
                 <div>
                   <span className="section-eyebrow">Diagnóstico de Procesos</span>
@@ -391,7 +341,7 @@ export function HomeLanding() {
             <RevealGroup className="mt-10 grid gap-3">
               {faqs.map((faq) => (
                 <Reveal key={faq.question}>
-                  <details className="group rounded-xl border border-border bg-card/60 transition-colors duration-200 hover:border-primary/20">
+                  <details className="surface-elevated group rounded-xl border border-border bg-card/60 transition-colors duration-200 hover:border-primary/20">
                     <summary className="flex cursor-pointer list-none select-none items-center justify-between px-5 py-4 text-left text-sm font-medium tracking-tight">
                       {faq.question}
                       <span className="text-muted-foreground/80 transition-transform duration-300 group-open:rotate-180">↓</span>

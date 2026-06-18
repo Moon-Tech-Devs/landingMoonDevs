@@ -28,7 +28,7 @@ export function ProcessPanel({ steps }: ProcessPanelProps) {
               type="button"
               onClick={() => setActive(index)}
               className={cn(
-                "w-full rounded-xl border px-4 py-4 text-left transition-colors",
+                "surface-elevated w-full rounded-xl border px-4 py-4 text-left transition-colors transition-shadow",
                 isActive
                   ? "border-primary/30 bg-primary/5"
                   : "border-border bg-card/40 hover:border-primary/15",
