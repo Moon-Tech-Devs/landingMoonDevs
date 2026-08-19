@@ -23,3 +23,11 @@ export const WA_N8N_AUDITORIA = waUrl(
 export const WA_N8N_PROYECTO = waUrl(
   "Hola CodiDevs, quiero iniciar un proyecto de automatizacion / n8n."
 )
+
+export const WA_APPS_COTIZAR = waUrl(
+  "Hola CodiDevs, vi sus apps móviles (NutriApp / G-Learn) y me gustaría cotizar el desarrollo de una app para mi negocio."
+)
+
+export const WA_APPS_IDEA = waUrl(
+  "Hola CodiDevs, tengo una idea para una aplicación móvil y quiero que la desarrollemos."
+)
