@@ -35,6 +35,7 @@ export function SiteFooter() {
           </p>
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
             <a href="/" className="transition-colors hover:text-foreground">Inicio</a>
+            <a href="/apps" className="transition-colors hover:text-foreground">Apps Móviles</a>
             <a href="/n8n" className="transition-colors hover:text-foreground">Automatizaciones n8n</a>
             <a href="/#contacto" className="transition-colors hover:text-foreground">Contacto</a>
           </div>
