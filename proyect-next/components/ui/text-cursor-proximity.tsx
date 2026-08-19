@@ -7,7 +7,7 @@ import {
   useAnimationFrame,
   useTransform,
   type MotionValue,
-} from "motion/react"
+} from "framer-motion"
 import { useMousePositionRef } from "@/hooks/use-mouse-position-ref"
 
 type CSSPropertiesWithValues = {
